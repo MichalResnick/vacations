@@ -35,7 +35,7 @@ class VacationModel{
     })
 
     public validate():string{
-        const result=UserModel.validationSchema.validate(this)
+        const result=VacationModel.validationSchema.validate(this)
         return result.error?.message
     }
 }
