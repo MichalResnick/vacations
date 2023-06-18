@@ -5,6 +5,7 @@ import dal from "../2-utils/dal";
 import { ValidationErrorModel } from "../4-models/error-models";
 import VacationModel from "../4-models/vacation-model";
 import { v4 as uuid } from "uuid";
+import images from "../2-utils/images";
 
 
 async function getAllVacations():Promise<VacationModel[]>{
@@ -20,12 +21,8 @@ async function addVacation(vacation:VacationModel):Promise<VacationModel>{
     const err=vacation.validate()
     if(err) throw new ValidationErrorModel(err)
 
-    if (vacation.image) {
-        const extension = vacation.image.name.substring(vacation.image.name.lastIndexOf("."))
-        vacation.imageName = uuid() + extension;
-        await vacation.image.mv("./src/1-assets/images/" + vacation.imageName);
-        delete vacation.image;
-    }
+    if (vacation.image) 
+    await images.getImageAndGenareteName(vacation)
 
     const imageBuffer = fs.readFileSync('./src/1-assets/images/' + vacation.imageName);
     const sql=`INSERT INTO vacations (target, description, startDate, endDate, price, image) VALUES (?, ?, ?, ?, ?, ?)`
