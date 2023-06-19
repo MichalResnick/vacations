@@ -32,6 +32,20 @@ router.post("/vacations",verifyAdmin, async (request: Request, response: Respons
     }
 });
 
+//update vacation
+router.put("/vacations/:vacationId([0-9]+)", async (request: Request, response: Response, next: NextFunction) => {
+    try {
+    request.body.vacationId=+request.params.vacationId
+    request.body.image=request.files?.image
+    const vacation=new VacationModel(request.body)
+    const updatedVacation=await vacationLogic.updateVacation(vacation)
+    response.status(201).json(updatedVacation)
+    }
+    catch (err: any) {
+        next(err);
+    }
+});
+
 //Get Picture
 router.get("/vacations/images/:imageName", async (request: Request, response: Response, next: NextFunction) => {
     try {
