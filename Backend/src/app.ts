@@ -8,6 +8,7 @@ import controller from "./6-controllers/admin-controller";
 import authController from "./6-controllers/auth-controller";
 import adminController from "./6-controllers/admin-controller";
 import vacationController from "./6-controllers/vacations-controller";
+import userController from "./6-controllers/user-controller";
 
 const server = express();
 
@@ -21,6 +22,7 @@ server.use(expressFileUpload());
 server.use("/api", authController);
 server.use("/api", vacationController);
 server.use("/api", adminController);
+server.use("/api", userController);
 server.use("*", routeNotFound);
 server.use(catchAll);
 

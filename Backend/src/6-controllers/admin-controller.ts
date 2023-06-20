@@ -46,17 +46,17 @@ router.put("/vacations/:vacationId([0-9]+)",verifyAdmin, async (request: Request
     }
 });
 
-//Get Picture
-router.get("/vacations/images/:imageName",verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
-    try {
-     const imageName=request.params.imageName
-     const absolutePath = path.join(__dirname, "..", "1-assets", "images", imageName);
-     response.sendFile(absolutePath);
-    }
-    catch (err: any) {
-        next(err);
-    }
-});
+// //Get Picture
+// router.get("/vacations/images/:imageName",verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
+//     try {
+//      const imageName=request.params.imageName
+//      const absolutePath = path.join(__dirname, "..", "1-assets", "images", imageName);
+//      response.sendFile(absolutePath);
+//     }
+//     catch (err: any) {
+//         next(err);
+//     }
+// });
 
 //Delete vacation
 router.delete("/vacations/:vacationId", async (request: Request, response: Response, next: NextFunction) => {

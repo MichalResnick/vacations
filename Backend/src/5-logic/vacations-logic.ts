@@ -25,7 +25,7 @@ async function getAllVacations(header: string) :Promise<VacationModel>{
     //validate
     if (!vacations) throw new ResourceNotFoundErrorModel(userId)
     
-    vacations.map((v: { isFollowed: boolean; }) => v.isFollowed = v.isFollowed ? true : false);
+    vacations.map((v: { isFollowing: boolean; }) => v.isFollowing = v.isFollowing ? true : false);
     
     return vacations;
                 

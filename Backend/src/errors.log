@@ -352,3 +352,28 @@ Stack: Error: EPERM: operation not permitted, unlink './src/1-assets/images/'
     at Object.<anonymous> (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\admin-logic.ts:74:18)
     at step (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\admin-logic.ts:33:23)
 ----------------------------------------------------------------------------------------------------
+Tue, 20 Jun 2023 02:57:04 GMT
+cathAll error
+Stack: Error: ER_WRONG_VALUE_COUNT_ON_ROW: Column count doesn't match value count at row 1
+    at Query.Sequence._packetToError (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\protocol\sequences\Sequence.js:47:14)
+    at Query.ErrorPacket (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\protocol\sequences\Query.js:79:18)
+    at Protocol._parsePacket (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\Connection.js:88:28)
+    at Socket.<anonymous> (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\Connection.js:526:10)
+    at Socket.emit (node:events:513:28)
+    at Socket.emit (node:domain:489:12)
+    --------------------
+    at Pool.query (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\Pool.js:199:23)
+    at C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\2-utils\dal.ts:14:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\2-utils\dal.ts:13:12)
+    at Object.<anonymous> (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\user-logic.ts:15:35)
+    at step (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\user-logic.ts:33:23)
+    at Object.next (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\user-logic.ts:14:53)
+    at C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\user-logic.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\user-logic.ts:4:12)
+----------------------------------------------------------------------------------------------------
