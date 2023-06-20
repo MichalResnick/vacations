@@ -338,3 +338,17 @@ Stack: Error: ER_BAD_NULL_ERROR: Column 'image' cannot be null
     at fulfilled (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\admin-logic.ts:5:58)
     at processTicksAndRejections (node:internal/process/task_queues:95:5)
 ----------------------------------------------------------------------------------------------------
+Tue, 20 Jun 2023 00:29:43 GMT
+cathAll error
+Stack: Error: EPERM: operation not permitted, unlink './src/1-assets/images/'
+    at Object.unlinkSync (node:fs:1780:3)
+    at Object.<anonymous> (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\2-utils\images.ts:19:12)
+    at step (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\2-utils\images.ts:33:23)
+    at Object.next (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\2-utils\images.ts:14:53)
+    at C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\2-utils\images.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\2-utils\images.ts:4:12)
+    at Object.checkIfImageExistsAndDelete (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\2-utils\images.ts:62:12)
+    at Object.<anonymous> (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\admin-logic.ts:74:18)
+    at step (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\admin-logic.ts:33:23)
+----------------------------------------------------------------------------------------------------

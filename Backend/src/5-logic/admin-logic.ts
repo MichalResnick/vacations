@@ -38,8 +38,11 @@ async function updateVacation(vacation:VacationModel):Promise<VacationModel>{
     const err=vacation.validate()
     if(err) throw new ValidationErrorModel(err)
    
-    if (vacation.image)
-    vacation.imageName=await images.getImageAndGenareteName(vacation)
+    if (vacation.image){    
+        await images.checkIfImageExistsAndDelete(vacation)
+        vacation.imageName=await images.getImageAndGenareteName(vacation)  
+    }
+  
     
     const sql=`
     UPDATE vacations SET
@@ -58,10 +61,33 @@ async function updateVacation(vacation:VacationModel):Promise<VacationModel>{
 
 }
 
+async function deleteVacation(vacationId: number): Promise<void> {
+
+    //get the current image by vacationId
+    const sqlSelectImage = `SELECT imageName FROM vacations WHERE vacations.vacationId = ?`;
+    const vacations = await dal.execute(sqlSelectImage, [vacationId]);
+    if (!vacations) throw new ResourceNotFoundErrorModel(vacationId);
+
+    const vacation = vacations[0];
+ 
+    //delete the image
+    await images.checkIfImageExistsAndDelete(vacation)
+    
+    // delete the vacation by vacationId from DB
+    const sql = `DELETE FROM vacations WHERE vacations.vacationId = ? `;
+
+    const info: OkPacket = await dal.execute(sql, [vacationId]);
+
+    // make sure the update was registered
+    if (info.affectedRows === 0) throw new ResourceNotFoundErrorModel(vacationId);
+
+};
+
 
 
 export default{
     getAllVacations,
     addVacation,
-    updateVacation
+    updateVacation,
+    deleteVacation
 }
