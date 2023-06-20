@@ -20,7 +20,7 @@ router.post("/followers", async (request: Request, response: Response, next: Nex
 });
 
 //get one vacation
-router.delete("/followers/:followerId", async (request: Request, response: Response, next: NextFunction) => {
+router.delete("/followers/:followerId([0-9]+)", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const followerId = +request.params.followerId;
         await userLogic.deleteFollow(followerId);

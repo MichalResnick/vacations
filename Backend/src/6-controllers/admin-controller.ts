@@ -59,7 +59,7 @@ router.put("/vacations/:vacationId([0-9]+)",verifyAdmin, async (request: Request
 // });
 
 //Delete vacation
-router.delete("/vacations/:vacationId", async (request: Request, response: Response, next: NextFunction) => {
+router.delete("/vacations/:vacationId([0-9]+)", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const vacationId = +request.params.vacationId;
         await adminLogic.deleteVacation(vacationId);
