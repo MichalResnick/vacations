@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction } from "express";
-import logic from "../5-logic/logic";
+import logic from "../5-logic/user-logic";
 import VacationModel from "../4-models/vacation-model";
 import verifyAdmin from "../3-middleware/verify-admin";
 import verifyLoggedIn from "../3-middleware/verify-logged-in";
@@ -9,15 +9,15 @@ import adminLogic from "../5-logic/admin-logic";
 const router = express.Router(); // Capital R
 
 // GET http://localhost:3001/api/_____
-router.get("/vacations", async (request: Request, response: Response, next: NextFunction) => {
-    try {
-    const vacations=await adminLogic.getAllVacations()
-    response.json(vacations)
-    }
-    catch (err: any) {
-        next(err);
-    }
-});
+// router.get("/vacations", async (request: Request, response: Response, next: NextFunction) => {
+//     try {
+//     const vacations=await adminLogic.getAllVacations()
+//     response.json(vacations)
+//     }
+//     catch (err: any) {
+//         next(err);
+//     }
+// });
 
 //add vacation
 router.post("/vacations",verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
