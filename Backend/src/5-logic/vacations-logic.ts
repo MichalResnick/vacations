@@ -8,7 +8,9 @@ async function getAllVacations(header: string) :Promise<VacationModel>{
 
     const userId=cyber.getUserIdFromToken(header)
 
-    const sql = `SELECT DISTINCT V.*
+    const sql = `SELECT DISTINCT
+                V.vacationId,V.target,V.description,DATE_FORMAT(V.startDate, '%Y-%m-%d') AS startDate,
+                DATE_FORMAT(V.endDate, '%Y-%m-%d') AS endDate ,V.price,V.imageName
                     ,EXISTS(SELECT * 
                         FROM followers 
                         WHERE vacationId = F.vacationId AND userId = ?) AS isFollowing, 
@@ -23,7 +25,7 @@ async function getAllVacations(header: string) :Promise<VacationModel>{
     //validate
     if (!vacations) throw new ResourceNotFoundErrorModel(userId)
     
-    // vacations.map((v: { isFollowed: boolean; }) => v.isFollowed = v.isFollowed ? true : false);
+    vacations.map((v: { isFollowed: boolean; }) => v.isFollowed = v.isFollowed ? true : false);
     
     return vacations;
                 

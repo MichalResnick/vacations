@@ -8,13 +8,13 @@ import { v4 as uuid } from "uuid";
 import images from "../2-utils/images";
 
 
-async function getAllVacations():Promise<VacationModel[]>{
-    const sql=`SELECT V.vacationId,V.target,V.description,DATE_FORMAT(V.startDate, '%Y-%m-%d') AS startDate,
-    DATE_FORMAT(V.endDate, '%Y-%m-%d') AS endDate ,V.price,V.imageName
-    FROM vacations AS V`
-    const vacations=await dal.execute(sql)
-    return vacations
-}
+// async function getAllVacations():Promise<VacationModel[]>{
+//     const sql=`SELECT V.vacationId,V.target,V.description,DATE_FORMAT(V.startDate, '%Y-%m-%d') AS startDate,
+//     DATE_FORMAT(V.endDate, '%Y-%m-%d') AS endDate ,V.price,V.imageName
+//     FROM vacations AS V`
+//     const vacations=await dal.execute(sql)
+//     return vacations
+// }
 
 async function addVacation(vacation:VacationModel):Promise<VacationModel>{
 
@@ -72,7 +72,7 @@ async function deleteVacation(vacationId: number): Promise<void> {
  
     //delete the image
     await images.checkIfImageExistsAndDelete(vacation)
-    
+
     // delete the vacation by vacationId from DB
     const sql = `DELETE FROM vacations WHERE vacations.vacationId = ? `;
 
@@ -86,7 +86,7 @@ async function deleteVacation(vacationId: number): Promise<void> {
 
 
 export default{
-    getAllVacations,
+    // getAllVacations,
     addVacation,
     updateVacation,
     deleteVacation
