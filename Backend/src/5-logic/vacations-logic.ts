@@ -4,7 +4,7 @@ import { ResourceNotFoundErrorModel } from "../4-models/error-models";
 import VacationModel from "../4-models/vacation-model";
 
 //Get all vacations with followers count
-async function getAllVacations(header: string) :Promise<VacationModel>{ 
+async function getAllVacations(header: string) :Promise<VacationModel[]>{ 
 
     const userId=cyber.getUserIdFromToken(header)
 
