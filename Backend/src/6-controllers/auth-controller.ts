@@ -17,6 +17,7 @@ router.post("/auth/register", async (request: Request, response: Response, next:
     }
 });
 
+//Register
 router.post("/auth/login", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const credentials = new CredentialsModel(request.body);
@@ -27,5 +28,17 @@ router.post("/auth/login", async (request: Request, response: Response, next: Ne
         next(err);
     }
 });
+
+//Check if email is exists- to show the error in the frontend
+router.get("/auth/:email", async (request: Request, response: Response, next: NextFunction) => {
+    try {
+        const exists = await authLogic.isEmailAddressTaken(request.params.email);
+        response.json(exists);
+    }
+    catch (err: any) {
+        next(err); 
+    }
+});
+
 
 export default router;

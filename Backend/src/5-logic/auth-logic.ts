@@ -50,5 +50,6 @@ async function login(credentials: CredentialsModel): Promise<string> {
 
 export default{
     register,
-    login
+    login,
+    isEmailAddressTaken
 }
