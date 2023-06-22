@@ -44,6 +44,16 @@ class VacationsService {
         return vacation;
     }
 
+    public async getMyVacations(): Promise<VacationModel[]> {
+
+        // Take vacations from global store:
+           let vacations = vacationsStore.getState().vacations;
+   
+           vacations=vacations.filter(v=>v.isFollowing===true)
+
+           return vacations
+       }
+
     //add vacation
     public async addVacation(vacation:VacationModel):Promise<void>{
 

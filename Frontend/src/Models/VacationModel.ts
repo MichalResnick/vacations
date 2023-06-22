@@ -9,7 +9,7 @@ class VacationModel{
     public imageName: string;
     public src: string;
     public followersCount: number;
-    public isFollowed: boolean;
+    public isFollowing: boolean;
 }
 
 export default VacationModel

@@ -54,11 +54,11 @@ export function vacationReducer(currentState = new VacationsState(), action: Vac
             }
             break;
 
-        case VacationsActionType.Follow: // Here payload must be the follower to add
-            const fIndexToUpdate = newState.vacations.findIndex(f => f.vacationId === action.payload.vacationId);
+        case VacationsActionType.Follow: // Here payload must be the vacationId
+            const fIndexToUpdate = newState.vacations.findIndex(f => f.vacationId === action.payload);
             if (fIndexToUpdate >= 0) {
                 newState.vacations[fIndexToUpdate].followersCount++;
-                newState.vacations[fIndexToUpdate].isFollowed = true;
+                newState.vacations[fIndexToUpdate].isFollowing = true;
             }
             break;
             
@@ -66,7 +66,7 @@ export function vacationReducer(currentState = new VacationsState(), action: Vac
             const fIndexToDelete = newState.vacations.findIndex(f => f.vacationId === action.payload); 
             if (fIndexToDelete >= 0) {
                 newState.vacations[fIndexToDelete].followersCount--;
-                newState.vacations[fIndexToDelete].isFollowed = false;
+                newState.vacations[fIndexToDelete].isFollowing = false;
             }
             break;
         
