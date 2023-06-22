@@ -4,7 +4,7 @@ import { ResourceNotFoundErrorModel, ValidationErrorModel } from "../4-models/er
 import FollowModel from "../4-models/follow-model";
 import exp from "constants";
 
-
+//follow
 async function addFollow(follow:FollowModel):Promise<FollowModel>{
     const err=follow.validate()
     if(err) throw new ValidationErrorModel(err)
@@ -12,21 +12,24 @@ async function addFollow(follow:FollowModel):Promise<FollowModel>{
     const sql=`INSERT INTO followers VALUES(DEFAULT,?,?) `
     const values=[follow.userId,follow.vacationId]
 
-    const info:OkPacket=await dal.execute(sql,values)
-    follow.followerId=info.insertId
+    await dal.execute(sql,values)
+    
     return follow
 
 }
 
-async function deleteFollow(followId:number){
-   
-    const sql = `DELETE FROM followers WHERE followers.followerId  = ? `;
+//Unfollow
+async function deleteFollow(follow: FollowModel): Promise<void> {
 
-    const info:OkPacket=await dal.execute(sql,[followId])
-   
-    if(info.affectedRows===0) throw new ResourceNotFoundErrorModel(followId)
-   
-}
+    // delete the follower connection in the DB
+    const sql = `DELETE FROM followers WHERE userId = ? AND vacationId =?`;
+
+    const values=[follow.userId,follow.vacationId]
+
+    const info:OkPacket=await dal.execute(sql,values)
+
+    if (info.affectedRows === 0) throw new ResourceNotFoundErrorModel(follow.vacationId);
+};
 
 
 export default {

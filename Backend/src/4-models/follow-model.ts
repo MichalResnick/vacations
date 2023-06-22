@@ -1,30 +1,25 @@
-import Joi from "joi";
+import Joi, { number, object } from "joi";
 
-class FollowModel {
-    
-    public followerId :number
-    public userId : number;
+class FolloweModel {
+
+    public userId: number;
     public vacationId: number;
- 
-    public constructor(follow: FollowModel) {
-        this.followerId=follow.followerId
-        this.userId = follow.userId;
-        this.vacationId = follow.vacationId;
+
+    public constructor (userId: number, vacationId: number) {
+
+        this.userId = userId;
+        this.vacationId = vacationId;
     }
 
-     private static validationSchema = Joi.object({
-        
-        followerId: Joi.number().positive().optional().integer(),
+    private static validationSchema = Joi.object({
         userId: Joi.number().required().positive().integer(),
-        vacationId: Joi.number().required().positive().integer()
-       
-    });
+        vacationId: Joi.number().optional().positive().integer()
+    })
 
-    public validate(): string {
-        const result = FollowModel.validationSchema.validate(this);
+    public validate ():string {
+        const result = FolloweModel.validationSchema.validate(this);
         return result.error?.message;
     }
-
 }
 
-export default FollowModel
+export default FolloweModel;
