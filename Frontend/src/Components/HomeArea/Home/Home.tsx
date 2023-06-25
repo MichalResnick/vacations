@@ -1,9 +1,11 @@
+import Register from "../../AuthArea/Register/Register";
 import "./Home.css";
 
 function Home(): JSX.Element {
     return (
         <div className="Home">
             <h2>Home...</h2>
+    
 
         </div>
     );

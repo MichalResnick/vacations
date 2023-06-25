@@ -1,6 +1,7 @@
-import jwtDecode from "jwt-decode";
+
 import { createStore } from "redux";
 import UserModel from "../Models/UserModel";
+import jwtDecode from "jwt-decode";
 
 // 1. Auth State
 export class AuthState {

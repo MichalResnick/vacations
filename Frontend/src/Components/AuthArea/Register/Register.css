@@ -1,0 +1,44 @@
+.Register>form {
+    width: 250px;
+    height: 2000px;
+    text-align: center;
+    display: inline-block;
+    margin: 40px auto;
+}
+
+.Register .TextBox,
+.Btn {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.Register .Btn {
+    height: 40px;
+    width: 140px;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    border: solid 1px rebeccapurple;
+    border-radius: 5px;
+    color: rebeccapurple;
+    font-size: medium;
+
+}
+
+.Register h2 {
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rebeccapurple;
+}
+
+.Register .SpanMessage {
+    color: red;
+    margin: 40px 0;
+    position: absolute;
+}
+
+.Register .SpanUsernameMessage {
+    color: red;
+    margin: 80px 0;
+    position: absolute;
+}

@@ -1,17 +1,17 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import Insert from "../../DataArea/Insert/Insert";
-import List from "../../DataArea/List/List";
-import Home from "../../HomeArea/Home/Home";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import "./Routing.css";
+import Register from "../../AuthArea/Register/Register";
+import Login from "../../AuthArea/Login/Login";
+import VacationList from "../../VacationArea/VacationsList/VacationsList";
 
 function Routing(): JSX.Element {
     return (
         <div className="Routing">
 			<Routes>
-                <Route path="/home" element={<Home />} />
-                <Route path="/list" element={<List />} />
-                <Route path="/insert" element={<Insert />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/vacations" element={<VacationList/>} />
                 <Route path="/" element={<Navigate to="/home" />} />
                 <Route path="*" element={<PageNotFound />} />
 

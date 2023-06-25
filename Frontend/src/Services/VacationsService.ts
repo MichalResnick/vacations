@@ -6,7 +6,7 @@ import appConfig from "../Utils/Config";
 class VacationsService {
 
 
-   public async getAllVacations(header: string) :Promise<VacationModel[]>{ 
+   public async getAllVacations() :Promise<VacationModel[]>{ 
 
     let vacations=vacationsStore.getState().vacations
 
