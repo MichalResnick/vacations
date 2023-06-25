@@ -9,6 +9,7 @@ const router = express.Router();
 router.get("/vacations", async (request: Request, response: Response, next: NextFunction) => {
     try {
     const header = request.header("authorization");
+    console.log("controler"+header)
     const vacations=await vacationsLogic.getAllVacations(header)
     response.json(vacations)
     }

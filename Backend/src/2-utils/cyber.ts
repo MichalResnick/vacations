@@ -77,21 +77,20 @@ function hash(plainText: string): string {
     return hashedText;
 }
 
-function getUserIdFromToken(authHeader: string): number {
-
-    const token = authHeader.substring(7);
+function getUserIdFromToken(header: string): number {
+    // Extract the token, format: "Bearer token"
+    const token = header.substring(7);
     // Get container which contains the user:
     const container = jwt.decode(token) as { user: UserModel };
     // Get the user: 
     const user = container.user;
-    console.log(user)
     // Get userId: 
     const userId = user.userId;
-    console.log("userId"+userId)
 
     return userId;
 
 }
+
 
 export default {
     getNewToken,

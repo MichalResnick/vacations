@@ -12,8 +12,8 @@ const router = express.Router();
 router.post("/followers/:vacationId", async (request: Request, response: Response, next: NextFunction) => {
 
     try {
-        const authHeader = request.header("authorization");
-        const userId = cyber.getUserIdFromToken(authHeader);
+        const header = request.header("authorization");
+        const userId = cyber.getUserIdFromToken(header);
         const vacationId = +request.params.vacationId;
         const follow = new FollowModel(userId, vacationId);
         const addedFollow = await userLogic.addFollow(follow);

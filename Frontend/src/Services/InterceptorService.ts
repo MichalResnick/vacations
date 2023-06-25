@@ -12,8 +12,8 @@ class InterceptorService {
             if (authStore.getState().token) {
 
                 // Attach it to the headers: 
-               request.headers = {
-                    "authorization": "Bearer " + authStore.getState().token // Must be that format
+                request.headers = {
+                    authorization: "Bearer " + authStore.getState().token
                 };
             }
 

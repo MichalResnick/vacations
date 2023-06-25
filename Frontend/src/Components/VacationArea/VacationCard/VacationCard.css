@@ -1,13 +1,14 @@
 .VacationCard >.container{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
-    width: 80%;
     text-align: left;
     padding: 15px 20px;
     width: 300px;
+    height: 250px;
     margin: 10px 10px;
     border-radius: 20px;
     font-size: x-small;
+    background-color: bisque;
 }
 
 .VacationCard >.container:hover{
@@ -19,10 +20,16 @@
     display: flex;
     justify-content: center;
     display: inline-block;
-    z-index: 1000;
 }
-.VacationCard>.container>.h2{
+.VacationCard>.container> p{
     font-weight: bold;
-    text-decoration: underline;
-    margin-top: -25px;
+    /* text-decoration: underline; */
+    margin-top: -5px;
+    font-size: xx-large;
+}
+.VacationCard >.container>img{
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    vertical-align: middle;
 }

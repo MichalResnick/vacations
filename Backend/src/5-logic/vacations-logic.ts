@@ -6,6 +6,7 @@ import VacationModel from "../4-models/vacation-model";
 //Get all vacations with followers count
 async function getAllVacations(header: string) :Promise<VacationModel[]>{ 
 
+    console.log( "header"+header)
     const userId=cyber.getUserIdFromToken(header)
 
     const sql = `SELECT DISTINCT
