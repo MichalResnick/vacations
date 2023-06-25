@@ -9,12 +9,14 @@ class VacationsService {
    public async getAllVacations() :Promise<VacationModel[]>{ 
 
     let vacations=vacationsStore.getState().vacations
+    console.log(vacations)
 
-    if(!vacations){
+    if(vacations.length===0){
 
         const response=await axios.get<VacationModel[]>(appConfig.vacationsUrl)
 
         vacations=response.data
+        console.log("redux"+vacations)
 
         vacationsStore.dispatch({type:VacationsActionType.FetchVacations,payload:vacations})
      }

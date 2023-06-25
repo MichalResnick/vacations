@@ -4,6 +4,7 @@ import UserModel from "../4-models/users-model";
 import crypto from "crypto";
 import RoleModel from "../4-models/role-model";
 
+
 const jwtSecretKey = "vacations";
 
 function getNewToken(user: UserModel): string {
@@ -83,8 +84,10 @@ function getUserIdFromToken(authHeader: string): number {
     const container = jwt.decode(token) as { user: UserModel };
     // Get the user: 
     const user = container.user;
+    console.log(user)
     // Get userId: 
     const userId = user.userId;
+    console.log("userId"+userId)
 
     return userId;
 

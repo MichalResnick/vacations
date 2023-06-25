@@ -377,3 +377,45 @@ Stack: Error: ER_WRONG_VALUE_COUNT_ON_ROW: Column count doesn't match value coun
     at new Promise (<anonymous>)
     at __awaiter (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\user-logic.ts:4:12)
 ----------------------------------------------------------------------------------------------------
+Sun, 25 Jun 2023 02:42:55 GMT
+cathAll error
+Stack: TypeError: Cannot read properties of undefined (reading 'substring')
+    at Object.getUserIdFromToken (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\2-utils\cyber.ts:81:30)
+    at Object.<anonymous> (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:9:24)
+    at step (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:33:23)
+    at Object.next (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:14:53)
+    at C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:4:12)
+    at Object.getAllVacations (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:47:12)
+    at C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\6-controllers\vacations-controller.ts:12:42
+    at step (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\6-controllers\vacations-controller.ts:33:23)
+----------------------------------------------------------------------------------------------------
+Sun, 25 Jun 2023 02:43:11 GMT
+cathAll error
+Stack: TypeError: Cannot read properties of undefined (reading 'substring')
+    at Object.getUserIdFromToken (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\2-utils\cyber.ts:81:30)
+    at Object.<anonymous> (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:9:24)
+    at step (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:33:23)
+    at Object.next (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:14:53)
+    at C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:4:12)
+    at Object.getAllVacations (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:47:12)
+    at C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\6-controllers\vacations-controller.ts:12:42
+    at step (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\6-controllers\vacations-controller.ts:33:23)
+----------------------------------------------------------------------------------------------------
+Sun, 25 Jun 2023 03:45:31 GMT
+cathAll error
+Stack: TypeError: Cannot read properties of undefined (reading 'substring')
+    at Object.getUserIdFromToken (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\2-utils\cyber.ts:82:30)
+    at Object.<anonymous> (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:9:24)
+    at step (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:33:23)
+    at Object.next (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:14:53)
+    at C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:4:12)
+    at Object.getAllVacations (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:47:12)
+    at C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\6-controllers\vacations-controller.ts:12:42
+    at step (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\6-controllers\vacations-controller.ts:33:23)
+----------------------------------------------------------------------------------------------------

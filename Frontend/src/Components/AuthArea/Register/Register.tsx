@@ -24,7 +24,7 @@ function Register(): JSX.Element {
             }
             await authService.register(user);
             alert("Welcome!");
-            navigate("/home");
+            navigate("/vacations");
         }
         catch (err: any) {
             alert(err.message);
@@ -34,7 +34,7 @@ function Register(): JSX.Element {
     return (
         <div className="Register">
 
-            <form onSubmit={handleSubmit(send)}></form>
+            <form onSubmit={handleSubmit(send)}>
             
                 <h2>Register</h2>
 
@@ -53,9 +53,9 @@ function Register(): JSX.Element {
                 <span className="SpanMessage">{formState.errors.lastName?.message}</span>
 
                 <TextField label="email" type="email" variant="outlined" className="TextBox" {...register("email", {
-                    required: { value: true, message: "Missing username!" },
-                    minLength: { value: 4, message: "Username must be minimum 4 chars" },
-                    maxLength: { value: 100, message: "Username can't exceed 100 chars" }
+                    required: { value: true, message: "Missing email!" },
+                    minLength: { value: 4, message: "email must be minimum 4 chars" },
+                    maxLength: { value: 100, message: "email can't exceed 100 chars" }
                 })} />
                 <span className="SpanMessage">{formState.errors.email?.message}</span>
                 {emailExists && <span className="SpanUsernameMessage">Username is taken</span>}
@@ -68,7 +68,7 @@ function Register(): JSX.Element {
                 <span className="SpanMessage">{formState.errors.password?.message}</span>
 
                 <Button type="submit" className="Btn" startIcon={<LoginIcon fontSize="medium" />}>Register</Button>
-			
+                </form>
         </div>
     );
 }

@@ -15,9 +15,9 @@ router.post("/followers/:vacationId", async (request: Request, response: Respons
         const authHeader = request.header("authorization");
         const userId = cyber.getUserIdFromToken(authHeader);
         const vacationId = +request.params.vacationId;
-        const follow = new FollowModel(userId,vacationId)
+        const follow = new FollowModel(userId, vacationId);
         const addedFollow = await userLogic.addFollow(follow);
-        response.status(201).json(addedFollow); // status: 201 - Created
+        response.status(201).json(addedFollow);  // status: 201 - Created
     }
     catch (err: any) {
         next(err);

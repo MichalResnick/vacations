@@ -20,7 +20,7 @@ class UserModel {
     }
 
     public  static validationSchema=Joi.object({
-        userId:Joi.number().required().positive().optional().integer(),
+        userId:Joi.number().positive().optional().integer(),
         firstName:Joi.string().min(2).max(30).required(),
         lastName:Joi.string().min(2).max(30).required(),
         email:Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),

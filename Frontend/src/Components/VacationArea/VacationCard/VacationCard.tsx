@@ -1,9 +1,15 @@
+import VacationModel from "../../../Models/VacationModel";
+import appConfig from "../../../Utils/Config";
 import "./VacationCard.css";
 
-function VacationCard(): JSX.Element {
+interface VacationCardProps {
+	vacation:VacationModel
+}
+
+function VacationCard(props: VacationCardProps): JSX.Element {
     return (
         <div className="VacationCard">
-			
+            <img src={`${appConfig.vacationsUrl}+images+${props.vacation.imageName}|| ImageNotFound!`} />	
         </div>
     );
 }
