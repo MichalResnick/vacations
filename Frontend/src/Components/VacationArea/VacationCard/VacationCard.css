@@ -21,13 +21,12 @@
     justify-content: center;
     display: inline-block;
 }
-.VacationCard>.container> p{
+.VacationCard .target{
     font-weight: bold;
-    /* text-decoration: underline; */
     margin-top: -5px;
-    font-size: xx-large;
+    font-size: x-large;
 }
-.VacationCard >.container>img{
+.VacationCard img{
     width: 300px;
     height: 200px;
     border-radius: 10px;

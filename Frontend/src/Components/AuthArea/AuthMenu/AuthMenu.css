@@ -1,5 +1,6 @@
 .AuthMenu {
-    position: relative;
+	position: absolute;
+    right: 20px;
     top: 20px;
 }
 
@@ -9,5 +10,7 @@
     text-align: center;
     text-decoration: none;
     font-size: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-family: 'Cabin', sans-serif;
+    font-family: 'Caveat', cursive;
+    font-family: 'Kanit', sans-serif;
 }

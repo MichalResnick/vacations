@@ -4,10 +4,7 @@ import { ResourceNotFoundErrorModel } from "../4-models/error-models";
 import VacationModel from "../4-models/vacation-model";
 
 //Get all vacations with followers count
-async function getAllVacations(header: string) :Promise<VacationModel[]>{ 
-
-    console.log( "header"+header)
-    const userId=cyber.getUserIdFromToken(header)
+async function getAllVacations(userId: number) :Promise<VacationModel[]>{ 
 
     const sql = `SELECT DISTINCT
                 V.vacationId,V.target,V.description,DATE_FORMAT(V.startDate, '%Y-%m-%d') AS startDate,

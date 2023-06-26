@@ -9,17 +9,18 @@ class VacationsService {
    public async getAllVacations() :Promise<VacationModel[]>{ 
 
     let vacations=vacationsStore.getState().vacations
-    console.log(vacations)
+    console.log("1" +vacations)
 
-    if(vacations.length===0){
 
+     if(vacations.length===0){
         const response=await axios.get<VacationModel[]>(appConfig.vacationsUrl)
 
         vacations=response.data
-        console.log("redux"+vacations)
+        console.log("2"+vacations)
 
         vacationsStore.dispatch({type:VacationsActionType.FetchVacations,payload:vacations})
      }
+     
 
      return vacations
    }
@@ -42,7 +43,7 @@ class VacationsService {
                 // Extract vacation: 
                 vacation = response.data;
             }
-            // Return vacation: 
+
         return vacation;
     }
 

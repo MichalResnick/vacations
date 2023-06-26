@@ -13,7 +13,7 @@ function VacationsList(): JSX.Element {
     vacationsService.getAllVacations()
     .then(vacations=>setVacations(vacations))
     .catch(err=>alert(err.message))
-  },[])
+  },[vacations])
 
     return (
         <div className="VacationList">

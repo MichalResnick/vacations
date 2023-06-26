@@ -1,6 +1,7 @@
-import express, {Request,Response,NextFunction } from "express";
+import express, { Request, Response, NextFunction } from "express";
 import vacationsLogic from "../5-logic/vacations-logic";
 import path from "path";
+import cyber from "../2-utils/cyber";
 
 
 
@@ -8,10 +9,10 @@ const router = express.Router();
 //get all vacations
 router.get("/vacations", async (request: Request, response: Response, next: NextFunction) => {
     try {
-    const header = request.header("authorization");
-    console.log("controler"+header)
-    const vacations=await vacationsLogic.getAllVacations(header)
-    response.json(vacations)
+        const header = request.header("authorization");
+        const userId = cyber.getUserIdFromToken(header);
+        const vacations = await vacationsLogic.getAllVacations(userId)
+        response.json(vacations)
     }
     catch (err: any) {
         next(err);
@@ -21,9 +22,9 @@ router.get("/vacations", async (request: Request, response: Response, next: Next
 //get one vacation
 router.get("/vacations/:vacationId", async (request: Request, response: Response, next: NextFunction) => {
     try {
-    const vacationId=+request.params.vacationId
-    const vacation=await vacationsLogic.getOneVacation(vacationId)
-    response.json(vacation)
+        const vacationId = +request.params.vacationId
+        const vacation = await vacationsLogic.getOneVacation(vacationId)
+        response.json(vacation)
     }
     catch (err: any) {
         next(err);
@@ -33,9 +34,9 @@ router.get("/vacations/:vacationId", async (request: Request, response: Response
 //Get Picture
 router.get("/vacations/images/:imageName", async (request: Request, response: Response, next: NextFunction) => {
     try {
-     const imageName=request.params.imageName
-     const absolutePath = path.join(__dirname, "..", "1-assets", "images", imageName);
-     response.sendFile(absolutePath);
+        const imageName = request.params.imageName
+        const absolutePath = path.join(__dirname, "..", "1-assets", "images", imageName);
+        response.sendFile(absolutePath);
     }
     catch (err: any) {
         next(err);
