@@ -3727,3 +3727,19 @@ Stack: TypeError: Cannot read properties of undefined (reading 'substring')
     at Layer.handle [as handle_request] (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\express\lib\router\layer.js:95:5)
     at next (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\express\lib\router\route.js:144:13)
 ----------------------------------------------------------------------------------------------------
+Tue, 27 Jun 2023 00:20:57 GMT
+cathAll error
+Stack: Error: connect ECONNREFUSED ::1:3306
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1300:16)
+    --------------------
+    at Protocol._enqueue (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at Protocol.handshake (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\protocol\Protocol.js:51:23)
+    at PoolConnection.connect (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\Connection.js:116:18)
+    at Pool.getConnection (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\Pool.js:48:16)
+    at Pool.query (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\Pool.js:202:8)
+    at C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\2-utils\dal.ts:14:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\2-utils\dal.ts:13:12)
+    at Object.<anonymous> (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:21:31)
+    at step (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:33:23)
+----------------------------------------------------------------------------------------------------
