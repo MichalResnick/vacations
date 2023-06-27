@@ -17,29 +17,7 @@ interface VacationCardProps {
 
 function VacationCard(props: VacationCardProps): JSX.Element {
 
-    const[vacation ,setVacation]=useState<VacationModel>()
     const navigate=useNavigate()
-
-
-    useEffect(()=>{
-        try{
-        const specificVacation=vacationsStore.getState().vacations.find(v=>v.vacationId===props.vacation.vacationId)
-        setVacation(specificVacation)
-
-        const unsubscribe = vacationsStore.subscribe(() => {
-            const newVacation = { ...vacationsStore.getState().vacations.find(v => v.vacationId === props.vacation.vacationId) };
-            setVacation(newVacation);
-        });
-        return () => {
-            unsubscribe();
-        }
-        
-        }
-        catch(err:any){
-         alert(err.message)
-        }
-
-    },[])
 
 
     async function followAndUnfollow(args:SyntheticEvent){
@@ -53,12 +31,12 @@ function VacationCard(props: VacationCardProps): JSX.Element {
             let value = target.checked;
 
             if(value===true){
-                followersService.addFollow(vacation.vacationId)
+                followersService.addFollow(props.vacation.vacationId)
                 return;
             }
 
             if(value===false){
-                followersService.unFollow(vacation.vacationId)
+                followersService.unFollow(props.vacation.vacationId)
                 return;
             }
 
@@ -106,9 +84,9 @@ function VacationCard(props: VacationCardProps): JSX.Element {
             {authService.isAdmin()&&
             <>
             
-            <NavLink to={"/vacations/edit/" + vacation?.vacationId}>Edit Vacation</NavLink>
+            <NavLink to={"/vacations/edit/" + props.vacation?.vacationId}>Edit Vacation</NavLink>
             <span> | </span>
-            <NavLink to="#" onClick={() => deleteVacation(vacation.vacationId)}>Delete</NavLink>
+            <NavLink to="#" onClick={() => deleteVacation(props.vacation.vacationId)}>Delete</NavLink>
 
             
             

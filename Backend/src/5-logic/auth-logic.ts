@@ -36,7 +36,7 @@ async function login(credentials: CredentialsModel): Promise<string> {
     if (error) throw new ValidationErrorModel(error);
 
     // Hash password:
-    // credentials.password = cyber.hash(credentials.password);
+    credentials.password = cyber.hash(credentials.password);
 
     const sql = `SELECT * FROM users WHERE email = ? AND password = ?`;
 

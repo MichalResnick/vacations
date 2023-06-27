@@ -4,26 +4,37 @@ import VacationModel from "../../../Models/VacationModel";
 import vacationsService from "../../../Services/VacationsService";
 import Spinner from "../../SharedArea/Spinner/Spinner";
 import VacationCard from "../VacationCard/VacationCard";
+import { vacationsStore } from "../../../Redux/VacationsState";
 
 function VacationsList(): JSX.Element {
 
-  const [vacations, setVacations]=useState<VacationModel[]>([])
+  const [vacations, setVacations] = useState<VacationModel[]>([])
 
-  useEffect(()=>{
+  useEffect(() => {
     vacationsService.getAllVacations()
-    .then(vacations=>setVacations(vacations))
-    .catch(err=>alert(err.message))
-  },[vacations])
+      .then(vacations => setVacations(vacations))
+      .catch(err => alert(err.message))
 
-    return (
-        <div className="VacationList">
-            {/* <marquee behavior="" direction="">נותרו רק 7 ימים עד לטיול האי הבלעדי שלנו! הזמינו עכשיו כדי להבטיח את מקומכם.</marquee> */}
-			
 
-            {vacations.length === 0 && <Spinner />}
-            {vacations.map(v=><VacationCard key={v.vacationId} vacation={v}/>)}
-        </div>
-    );
+    const unsubscribe = vacationsStore.subscribe(() => {
+      const dup = [...vacationsStore.getState().vacations];
+      setVacations(dup);
+    });
+
+    return () => unsubscribe();
+
+
+  }, [])
+
+  return (
+    <div className="VacationList">
+      {/* <marquee behavior="" direction="">נותרו רק 7 ימים עד לטיול האי הבלעדי שלנו! הזמינו עכשיו כדי להבטיח את מקומכם.</marquee> */}
+
+
+      {vacations.length === 0 && <Spinner />}
+      {vacations.map(v => <VacationCard key={v.vacationId} vacation={v} />)}
+    </div>
+  );
 }
 
 export default VacationsList;

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import "./EditProduct.css";
+import "./EditVacation.css";
 import VacationModel from "../../../Models/VacationModel";
 import vacationsService from "../../../Services/VacationsService";
 
@@ -47,16 +47,16 @@ function EditProduct(): JSX.Element {
                 <input type="hidden" {...register("vacationId")} />
 
                 <label>Target: </label>
-                <input type="text" {...register("target", ProductModel.nameValidation)} />
-                <span className="Error">{formState.errors.name?.message}</span>
+                <input type="text" {...register("target", VacationModel.targetValidation)} />
+                <span className="Error">{formState.errors.target?.message}</span>
 
-                <label>Price: </label>
-                <input type="number" {...register("price", ProductModel.priceValidation)} />
-                <span className="Error">{formState.errors.price?.message}</span>
+                <label>Description: </label>
+                <input type="text" {...register("description", VacationModel.descriptionValidation)} />
+                <span className="Error">{formState.errors.description?.message}</span>
 
-                <label>Stock: </label>
+                {/* <label>Stock: </label>
                 <input type="number" {...register("stock", ProductModel.stockValidation)} />
-                <span className="Error">{formState.errors.stock?.message}</span>
+                <span className="Error">{formState.errors.stock?.message}</span> */}
 
                 <label>Image: </label>
                 <input type="file" accept="image/*" {...register("image")} />
