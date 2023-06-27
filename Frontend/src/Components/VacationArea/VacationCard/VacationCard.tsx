@@ -69,6 +69,18 @@ function VacationCard(props: VacationCardProps): JSX.Element {
         }
     }
 
+    async function deleteVacation(vacationId:number){
+        try {
+            if(!window.confirm("Are you sure?")) return;
+            vacationsService.deleteVacation(vacationId) 
+            alert("You deleted vacation") 
+            navigate("/vacations")
+        } catch (error:any) {
+            alert(error.message)
+        }
+
+    }
+
     return (
         <div className="VacationCard">
             <div className="container">
@@ -78,17 +90,32 @@ function VacationCard(props: VacationCardProps): JSX.Element {
             </NavLink>
             </div>	
 
-            {!authService.isAdmin()&& <>
+            {!authService.isAdmin()&& 
+            <>
                 <label className="follow">
                 <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} checked={props.vacation.isFollowing} onChange={followAndUnfollow} />
                 <span className={`${props.vacation.isFollowing ? "Unfollow" : "Follow"}`}>{props.vacation.isFollowing? "Unfollow" : "Follow"}</span>
                 </label>
                 <div className="DivFollowCount">
-                                <span className="TextCountFollow">{vacation.followersCount}</span>
+                <span className="TextCountFollow">{props.vacation.followersCount}</span>
                 </div>
             </>
               
               }
+
+            {authService.isAdmin()&&
+            <>
+            
+            <NavLink to={"/vacations/edit/" + vacation?.vacationId}>Edit Vacation</NavLink>
+            <span> | </span>
+            <NavLink to="#" onClick={() => deleteVacation(vacation.vacationId)}>Delete</NavLink>
+
+            
+            
+            </>
+            
+            
+            }
 
         </div>
     );
