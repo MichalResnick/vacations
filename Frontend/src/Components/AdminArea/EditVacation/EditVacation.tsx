@@ -1,19 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import "./EditVacation.css";
 import VacationModel from "../../../Models/VacationModel";
 import vacationsService from "../../../Services/VacationsService";
+import useVerifyAdmin from "../../../Utils/UseVerifyAdmin";
+import appConfig from "../../../Utils/Config";
 
 function EditProduct(): JSX.Element {
 
+    useVerifyAdmin();
+
     const { register, handleSubmit, formState, setValue } = useForm<VacationModel>();
+    const [vacation,seVacation]=useState<VacationModel>()
+    const [selectedImage, setSelectedImage] = useState()
     const navigate = useNavigate();
     const params = useParams();
 
     useEffect(() => {
-        const id = +params.prodId; // Same name as router parameter.
-        vacationsService.getOneVacation(id)
+        const vacationId = +params.vacationId; // Same name as router parameter.
+        vacationsService.getOneVacation(vacationId)
             .then(vacation => {
                 setValue("vacationId", vacation.vacationId);
                 setValue("target", vacation.target);
@@ -21,7 +27,9 @@ function EditProduct(): JSX.Element {
                 setValue("startDate", vacation.startDate);
                 setValue("endDate", vacation.endDate);
                 setValue("price", vacation.price);
-                setValue("price", vacation.price);
+                setValue("imageName", vacation.imageName);
+                seVacation(vacation)
+                console.log(vacationId)
             })
             .catch(err => alert(err.message));
     }, []);
@@ -37,8 +45,14 @@ function EditProduct(): JSX.Element {
         }
     }
 
+    const imageChange = (e:any) => {
+        if (e.target.files && e.target.files.length > 0) {
+          setSelectedImage(e.target.files[0]);
+        }
+      };
+
     return (
-        <div className="EditVacation Box">
+        <div className="EditVacation">
 
             <form onSubmit={handleSubmit(send)}>
 
@@ -54,16 +68,25 @@ function EditProduct(): JSX.Element {
                 <input type="text" {...register("description", VacationModel.descriptionValidation)} />
                 <span className="Error">{formState.errors.description?.message}</span>
 
-                {/* <label>Stock: </label>
-                <input type="number" {...register("stock", ProductModel.stockValidation)} />
-                <span className="Error">{formState.errors.stock?.message}</span> */}
+                <label>Start Date: </label>
+                <input type="date" {...register("startDate", VacationModel.startDateValidation)} />
+                <span className="Error">{formState.errors.startDate?.message}</span>
+
+                
+                <label>End Date: </label>
+                <input type="date" {...register("endDate", VacationModel.endDateValidation)} />
+                <span className="Error">{formState.errors.endDate?.message}</span>
 
                 <label>Image: </label>
-                <input type="file" accept="image/*" {...register("image")} />
+                <img src={vacation && appConfig.imagesUrl + vacation?.imageName}/>
+                <input type="file" accept="image/*" onChange={imageChange} defaultValue={vacation?.imageName} {...register("image")} />
 
                 <button>Update</button>
 
             </form>
+
+            <div><NavLink to="/vacations">-Back-</NavLink></div>
+
 
         </div>
     );

@@ -9,6 +9,8 @@ import { vacationsStore } from "../../../Redux/VacationsState";
 function VacationsList(): JSX.Element {
 
   const [vacations, setVacations] = useState<VacationModel[]>([])
+  const[currentPage,setCurrentPage]=useState(1)
+  const[postsPerPage,setPostsPerPage]=useState(8)
 
   useEffect(() => {
     vacationsService.getAllVacations()
@@ -26,13 +28,17 @@ function VacationsList(): JSX.Element {
 
   }, [])
 
+  const lastIndex=currentPage * postsPerPage
+  const firstIndex=lastIndex-postsPerPage
+  const currentVacation=vacations.slice(firstIndex,lastIndex)
+
   return (
     <div className="VacationList">
       {/* <marquee behavior="" direction="">נותרו רק 7 ימים עד לטיול האי הבלעדי שלנו! הזמינו עכשיו כדי להבטיח את מקומכם.</marquee> */}
 
 
-      {vacations.length === 0 && <Spinner />}
-      {vacations.map(v => <VacationCard key={v.vacationId} vacation={v} />)}
+      {currentVacation.length === 0 && <Spinner />}
+      {currentVacation.map(v => <VacationCard key={v.vacationId} vacation={v} />)}
     </div>
   );
 }

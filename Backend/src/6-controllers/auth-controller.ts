@@ -17,7 +17,7 @@ router.post("/auth/register", async (request: Request, response: Response, next:
     }
 });
 
-//Register
+//Login
 router.post("/auth/login", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const credentials = new CredentialsModel(request.body);
