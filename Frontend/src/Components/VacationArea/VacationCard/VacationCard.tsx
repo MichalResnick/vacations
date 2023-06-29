@@ -47,6 +47,11 @@ function VacationCard(props: VacationCardProps): JSX.Element {
         }
     }
 
+    function convertDate(date: string): string {
+        const d = new Date(date);
+        return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`
+    }
+
     async function deleteVacation(vacationId:number){
         try {
             if(!window.confirm("Are you sure?")) return;
@@ -65,6 +70,8 @@ function VacationCard(props: VacationCardProps): JSX.Element {
             <NavLink to={"/vacations/"+ props.vacation.vacationId}>
             <img src={appConfig.imagesUrl+props.vacation.imageName} />
             <p className="target">{props.vacation.target}</p>
+            <span>Dates: {convertDate(props.vacation.startDate)} - {convertDate(props.vacation.endDate)}</span>
+            <p>{props.vacation.description}</p>
             </NavLink>
             </div>	
 
@@ -83,13 +90,9 @@ function VacationCard(props: VacationCardProps): JSX.Element {
 
             {authService.isAdmin()&&
             <>
-            
             <NavLink to={"/vacations/edit/" + props.vacation?.vacationId}>Edit Vacation</NavLink>
             <span> | </span>
-            <NavLink to="#" onClick={() => deleteVacation(props.vacation.vacationId)}>Delete</NavLink>
-
-            
-            
+            <NavLink to="#" onClick={() => deleteVacation(props.vacation.vacationId)}>Delete</NavLink> 
             </>
             
             

@@ -40,7 +40,6 @@ async function updateVacation(vacation:VacationModel):Promise<VacationModel>{
     if(err) throw new ValidationErrorModel(err)
    
     if (vacation.image){    
-        console.log(vacation.imageName)
         if (fs.existsSync("./src/1-assets/images/" + vacation.imageName)) {
 
             // Delete it:
@@ -72,7 +71,6 @@ async function updateVacation(vacation:VacationModel):Promise<VacationModel>{
 
 async function deleteVacation(vacationId: number): Promise<void> {
 
-    //get the current image by vacationId
     const vacation=await vacationsLogic.getOneVacation(vacationId)
        // delete the vacation by vacationId from DB
     const sql = `DELETE FROM vacations WHERE vacations.vacationId = ? `;
@@ -84,11 +82,6 @@ async function deleteVacation(vacationId: number): Promise<void> {
  
     //delete the image
     fs.unlinkSync("./src/1-assets/images/" + vacation.imageName);
-
- 
-  
-
-
 
 };
 

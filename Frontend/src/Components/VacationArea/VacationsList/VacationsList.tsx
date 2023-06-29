@@ -8,6 +8,7 @@ import { vacationsStore } from "../../../Redux/VacationsState";
 import Pagination from "../Pagination/Pagination";
 import authService from "../../../Services/AuthService";
 import notifyService from "../../../Services/NotifyService";
+import { NavLink } from "react-router-dom";
 
 function VacationsList(): JSX.Element {
   const [vacations, setVacations] = useState<VacationModel[]>([]);
@@ -77,6 +78,14 @@ function VacationsList(): JSX.Element {
           <button onClick={() => handleFilterButtonClick('current')}>Current Vacations</button>
           <button onClick={filterMyVacation}>My Vacation</button>
         </>
+      )}
+
+      {authService.isAdmin()&&(
+
+        <>
+          <NavLink to="/vacations/new">➕</NavLink>
+        </>
+
       )}
 
       <br /><br /><br />
