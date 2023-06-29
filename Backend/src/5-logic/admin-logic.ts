@@ -6,6 +6,7 @@ import { ResourceNotFoundErrorModel, ValidationErrorModel } from "../4-models/er
 import VacationModel from "../4-models/vacation-model";
 import { v4 as uuid } from "uuid";
 import images from "../2-utils/images";
+import vacationsLogic from "./vacations-logic";
 
 
 // async function getAllVacations():Promise<VacationModel[]>{
@@ -39,8 +40,16 @@ async function updateVacation(vacation:VacationModel):Promise<VacationModel>{
     if(err) throw new ValidationErrorModel(err)
    
     if (vacation.image){    
-        await images.checkIfImageExistsAndDelete(vacation)
-        vacation.imageName=await images.getImageAndGenareteName(vacation)  
+        console.log(vacation.imageName)
+        if (fs.existsSync("./src/1-assets/images/" + vacation.imageName)) {
+
+            // Delete it:
+            fs.unlinkSync("./src/1-assets/images/" + vacation.imageName);
+        }
+        const extension = vacation.image.name.substring(vacation.image.name.lastIndexOf("."))
+        vacation.imageName = uuid() + extension;
+        await vacation.image.mv("./src/1-assets/images/" + vacation.imageName);
+        delete vacation.image;
     }
   
     
@@ -64,22 +73,22 @@ async function updateVacation(vacation:VacationModel):Promise<VacationModel>{
 async function deleteVacation(vacationId: number): Promise<void> {
 
     //get the current image by vacationId
-    const sqlSelectImage = `SELECT imageName FROM vacations WHERE vacations.vacationId = ?`;
-    const vacations = await dal.execute(sqlSelectImage, [vacationId]);
-    if (!vacations) throw new ResourceNotFoundErrorModel(vacationId);
-
-    const vacation = vacations[0];
- 
-    //delete the image
-    await images.checkIfImageExistsAndDelete(vacation)
-
-    // delete the vacation by vacationId from DB
+    const vacation=await vacationsLogic.getOneVacation(vacationId)
+       // delete the vacation by vacationId from DB
     const sql = `DELETE FROM vacations WHERE vacations.vacationId = ? `;
-
     const info: OkPacket = await dal.execute(sql, [vacationId]);
 
     // make sure the update was registered
     if (info.affectedRows === 0) throw new ResourceNotFoundErrorModel(vacationId);
+ 
+ 
+    //delete the image
+    fs.unlinkSync("./src/1-assets/images/" + vacation.imageName);
+
+ 
+  
+
+
 
 };
 

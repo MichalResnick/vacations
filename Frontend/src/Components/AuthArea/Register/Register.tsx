@@ -51,7 +51,6 @@ function Register(): JSX.Element {
                 <TextField label="Password" type="password" variant="outlined" className="TextBox" {...register("password", UserModel.passwordValidation)} />
                 <span className="SpanMessage">{formState.errors.password?.message}</span>
 
-                <TextField label="role" type="text" variant="outlined" className="TextBox" {...register("role")} />
 
                 <Button type="submit" className="Btn" startIcon={<LoginIcon fontSize="medium" />}>Register</Button>
                 </form>

@@ -2,6 +2,7 @@ import axios from "axios";
 import { VacationsActionType, vacationsStore } from "../Redux/VacationsState";
 import VacationModel from "../Models/VacationModel";
 import appConfig from "../Utils/Config";
+import { consumers } from "stream";
 
 class VacationsService {
 
@@ -9,14 +10,13 @@ class VacationsService {
    public async getAllVacations() :Promise<VacationModel[]>{ 
 
     let vacations=vacationsStore.getState().vacations
-    console.log("1" +vacations)
+  
 
 
      if(vacations.length===0){
         const response=await axios.get<VacationModel[]>(appConfig.vacationsUrl)
 
         vacations=response.data
-        console.log("2"+vacations)
 
         vacationsStore.dispatch({type:VacationsActionType.FetchVacations,payload:vacations})
      }
@@ -50,11 +50,11 @@ class VacationsService {
     public async getMyVacations(): Promise<VacationModel[]> {
 
         // Take vacations from global store:
-           let vacations = vacationsStore.getState().vacations;
+          const vacations = vacationsStore.getState().vacations;
    
-           vacations=vacations.filter(v=>v.isFollowing===true)
+          const myvacations=vacations.filter(v=>v.isFollowing===true)
 
-           return vacations
+           return myvacations
        }
 
     //add vacation
@@ -86,6 +86,7 @@ class VacationsService {
         myFormData.append("startDate", vacation.startDate);
         myFormData.append("endDate", vacation.endDate);
         myFormData.append("price", vacation.price.toString());
+        myFormData.append("imageName",vacation.imageName)
         myFormData.append("image", vacation.image[0]); // image = FileList, image[0] = File
 
         const response=await axios.put<VacationModel>(appConfig.vacationsUrl+vacation.vacationId ,myFormData)
@@ -93,6 +94,8 @@ class VacationsService {
         const updatedVacation=response.data
 
         vacationsStore.dispatch({type:VacationsActionType.UpdateVacation,payload:updatedVacation})
+        
+        console.log(updatedVacation)
 
     }
 

@@ -1,11 +1,20 @@
-import "./Spinner.css";
+import React from "react";
 
-function Spinner(): JSX.Element {
+import "./Loader.css";
+
+const Loader = () => {
     return (
-        <div className="Spinner">
-			
+        <div className='lds-roller'>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
     );
-}
+};
 
-export default Spinner;
+export default Loader;
