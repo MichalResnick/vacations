@@ -3,5 +3,8 @@ html, body, #root {
     padding: 0;
     height: 100%;
     text-align: center;
+    background-image:url("./Assets/gif4.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 

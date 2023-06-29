@@ -7,8 +7,8 @@ import authService from "../../../Services/AuthService";
 import vacationsService from "../../../Services/VacationsService";
 import followersService from "../../../Services/FollowersService";
 import { vacationsStore } from "../../../Redux/VacationsState";
-import { Checkbox, Tooltip } from "@mui/material";
-import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import { Card, CardContent, CardMedia, Checkbox, IconButton, Tooltip, Typography } from "@mui/material";
+import { Delete, Edit, Favorite, FavoriteBorder } from "@mui/icons-material";
 
 
 interface VacationCardProps {
@@ -64,42 +64,99 @@ function VacationCard(props: VacationCardProps): JSX.Element {
 
     }
 
-    return (
-        <div className="VacationCard">
-            <div className="container">
-            <NavLink to={"/vacations/"+ props.vacation.vacationId}>
-            <img src={appConfig.imagesUrl+props.vacation.imageName} />
-            <p className="target">{props.vacation.target}</p>
-            <span>Dates: {convertDate(props.vacation.startDate)} - {convertDate(props.vacation.endDate)}</span>
-            <p>{props.vacation.description}</p>
-            </NavLink>
-            </div>	
+//     return (
+//         <div className="VacationCard">
+//             <div className="container">
+//             <NavLink to={"/vacations/"+ props.vacation.vacationId}>
+//             <img src={appConfig.imagesUrl+props.vacation.imageName} />
+//             <p className="target">{props.vacation.target}</p>
+//             <span>Dates: {convertDate(props.vacation.startDate)} - {convertDate(props.vacation.endDate)}</span>
+//             <p>{props.vacation.description}</p>
+//             </NavLink>
+//             </div>	
 
-            {!authService.isAdmin()&& 
-            <>
-                <label className="follow">
-                <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} checked={props.vacation.isFollowing} onChange={followAndUnfollow} />
-                <span className={`${props.vacation.isFollowing ? "Unfollow" : "Follow"}`}>{props.vacation.isFollowing? "Unfollow" : "Follow"}</span>
-                </label>
-                <div className="DivFollowCount">
-                <span className="TextCountFollow">{props.vacation.followersCount}</span>
-                </div>
-            </>
+//             {!authService.isAdmin()&& 
+//             <>
+//                 <label className="follow">
+//                 <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} checked={props.vacation.isFollowing} onChange={followAndUnfollow} />
+//                 <span className={`${props.vacation.isFollowing ? "Unfollow" : "Follow"}`}>{props.vacation.isFollowing? "Unfollow" : "Follow"}</span>
+//                 </label>
+//                 <div className="DivFollowCount">
+//                 <span className="TextCountFollow">{props.vacation.followersCount}</span>
+//                 </div>
+//             </>
               
-              }
+//               }
 
-            {authService.isAdmin()&&
-            <>
-            <NavLink to={"/vacations/edit/" + props.vacation?.vacationId}>Edit Vacation</NavLink>
-            <span> | </span>
-            <NavLink to="#" onClick={() => deleteVacation(props.vacation.vacationId)}>Delete</NavLink> 
-            </>
+//             {authService.isAdmin()&&
+//             <>
+//             <NavLink to={"/vacations/edit/" + props.vacation?.vacationId}>Edit Vacation</NavLink>
+//             <span> | </span>
+//             <NavLink to="#" onClick={() => deleteVacation(props.vacation.vacationId)}>Delete</NavLink> 
+//             </>
             
             
-            }
+//             }
 
+//         </div>
+//     );
+// }
+
+// export default VacationCard;
+return (
+    <Card className="VacationCard">
+      <NavLink to={"/vacations/" + props.vacation.vacationId} className="card-link">
+        <div className="card-header">
+          <CardMedia
+            component="img"
+            height="200"
+            image={appConfig.imagesUrl + props.vacation.imageName}
+            alt={props.vacation.target}
+          />
+          <div className="header-overlay">
+            <Typography variant="h6" component="div" className="target">
+              {props.vacation.target}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" className="date-range">
+              Dates: {convertDate(props.vacation.startDate)} - {convertDate(props.vacation.endDate)}
+            </Typography>
+          </div>
         </div>
-    );
+        <CardContent>
+          <Typography variant="body2" color="textSecondary" className="description">
+            {props.vacation.description.substr(0, 100)}...
+          </Typography>
+          <Typography variant="body2" color="textSecondary" className="price">
+            Price: {props.vacation.price} USD
+          </Typography>
+        </CardContent>
+      </NavLink>
+
+      <CardContent className="card-actions">
+        {!authService.isAdmin() && (
+          <>
+            <IconButton size="small" className={`follow-button ${props.vacation.isFollowing ? "unfollow" : "follow"}`} onClick={followAndUnfollow}>
+              {props.vacation.isFollowing ? <Favorite /> : <FavoriteBorder />}
+            </IconButton>
+            <Typography variant="body2" className="follow-count">
+              {props.vacation.followersCount}
+            </Typography>
+          </>
+        )}
+
+        {authService.isAdmin() && (
+          <div className="admin-icons">
+            <IconButton size="small" component={NavLink} to={"/vacations/edit/" + props.vacation.vacationId}>
+              <Edit />
+            </IconButton>
+            <IconButton size="small" onClick={() => deleteVacation(props.vacation.vacationId)}>
+              <Delete />
+            </IconButton>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
 }
 
 export default VacationCard;

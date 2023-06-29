@@ -1,4 +1,4 @@
-.VacationCard >.container{
+/* .VacationCard >.container{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     text-align: left;
@@ -13,7 +13,7 @@
 
 .VacationCard >.container:hover{
     box-shadow: 10px 10px 18px 10px rgba(91, 11, 95, 0.2);
-}
+} */
 
 /* .VacationCard{
     font-family: Segoe Print;
@@ -34,58 +34,98 @@
 } */
 .VacationCard {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    display: inline-block;
     width: 300px;
+    font-family: Segoe Print;
     background-color: #fff;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    padding: 20px;
-    margin: 20px;
-    font-family: 'Roboto', sans-serif;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    padding: 15px 20px;
+    margin: 10px 10px;
+    transition: transform 0.3s ease;
+    margin-top: 80px;
   }
   
- .VacationCard img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
+.VacationCard:hover {
+    transform: translateY(-5px);
   }
   
- .VacationCard h2 {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
+  .card-link {
+    text-decoration: none;
+    color: inherit;
   }
   
- .VacationCard p {
-    margin: 10px 0;
-    color: #777;
+  .card-header {
+    position: relative;
+  }
+  
+  .card-header .header-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 8px;
+  }
+  
+  .target {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
   }
   
   .date-range {
+    color: #ffffff;
+    font-size: 14px;
+  }
+  
+  .description {
+    margin-top: 16px;
+    font-size: 14px;
+    height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .price {
+    font-size: 14px;
+    color: #4caf50;
+    margin-top: 8px;
+  }
+  
+  .card-actions {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
-    color: #555;
+    justify-content: space-between;
+    padding: 8px;
   }
   
-  /* Material UI Styles */
-  .MuiTypography-root {
-    font-family: 'Roboto', sans-serif;
+  .follow-button {
+    color: #ff4081;
   }
   
-  .MuiTypography-h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 10px;
+  .unfollow {
+    color: #ff4081;
   }
   
-  .MuiTypography-body1 {
-    margin: 10px 0;
-    color: #777;
+  .follow-count {
+    font-size: 14px;
   }
   
-  .MuiTypography-caption {
-    margin-top: 20px;
-    color: #555;
+  .admin-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgb(207, 247, 234);
   }
+  
+  @media (max-width: 767px) {
+    .VacationCard {
+      width: 100%;
+    }
+  }
+  
+  
