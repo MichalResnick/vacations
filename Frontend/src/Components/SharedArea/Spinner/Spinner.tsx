@@ -1,10 +1,10 @@
 import React from "react";
 
-import "./Loader.css";
+import "./Spinner.css";
 
-const Loader = () => {
+function Spinner(): JSX.Element {
     return (
-        <div className='lds-roller'>
+        <div className=' Spiner lds-roller'>
             <div></div>
             <div></div>
             <div></div>
@@ -17,4 +17,4 @@ const Loader = () => {
     );
 };
 
-export default Loader;
+export default Spinner;
