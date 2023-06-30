@@ -37,9 +37,7 @@ async function getOneVacation(vacationId: number): Promise<VacationModel> {
                     WHERE vacationId = ?`;
 
     const vacations = await dal.execute(sql, [vacationId]);
-
     const vacation = vacations[0];
-
     // validate if the vacation was returned:
     if (!vacation) throw new ResourceNotFoundErrorModel(vacationId);
 
@@ -47,20 +45,8 @@ async function getOneVacation(vacationId: number): Promise<VacationModel> {
 };
 
 
- async function getVacationsFollowersCount(): Promise<{ vacation_name: string, followers_count: number }[]> {
-    const sql = `
-      SELECT v.target, COUNT(f.userId) AS followers_count
-      FROM vacations AS v
-      LEFT JOIN followers AS f ON v.vacationId = f.vacationId
-      GROUP BY v.target
-    `;
-  
-    return dal.execute(sql);
-  }
-
 export default{
     getAllVacations,
     getOneVacation,
-    getVacationsFollowersCount
     
 }

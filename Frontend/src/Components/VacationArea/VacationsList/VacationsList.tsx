@@ -83,7 +83,10 @@ function VacationsList(): JSX.Element {
       {authService.isAdmin()&&(
 
         <>
+        <br /><br />
           <NavLink to="/vacations/new">➕</NavLink>
+          <br />
+          <NavLink to="/vacations/charts">charts</NavLink>
         </>
 
       )}

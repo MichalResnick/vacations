@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 import { authStore } from "../../../Redux/AuthState";
 import Logout from "../../AuthArea/Logout/Logout";
 import AddVacation from "../../AdminArea/AddVacation/AddVacation";
+import VacationsChart from "../../AdminArea/VacationCharts/VacationCharts";
+
 
 
 function Routing(): JSX.Element {
@@ -35,6 +37,7 @@ function Routing(): JSX.Element {
                 <Route path="/vacations/:vacationId" element={<VacationDetails />} />
                 <Route path="/vacations/edit/:vacationId" element={<EditVacation />} />
                 <Route path="/vacations/new" element={<AddVacation />} />
+                <Route path="/vacations/charts" element={<VacationsChart />} />
                 <Route path="/" element={<Navigate to="/register" />} />
                 <Route path="*" element={<PageNotFound />} />
 
