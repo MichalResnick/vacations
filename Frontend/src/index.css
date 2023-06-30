@@ -6,5 +6,14 @@ html, body, #root {
     background-image:url("./Assets/gif4.gif");
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: 'Cabin', sans-serif;
+    font-family: 'Caveat', cursive;
+    font-family: 'Kanit', sans-serif;
+}
+
+p,h1,h2,span,textarea input{
+    font-family: 'Cabin', sans- !important;
+    font-family: 'Caveat', cursive !important;
+    font-family: 'Kanit', sans-serif !important;
 }
 

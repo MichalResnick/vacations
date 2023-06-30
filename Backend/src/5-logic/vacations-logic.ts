@@ -46,7 +46,21 @@ async function getOneVacation(vacationId: number): Promise<VacationModel> {
     return vacation;
 };
 
+
+ async function getVacationsFollowersCount(): Promise<{ vacation_name: string, followers_count: number }[]> {
+    const sql = `
+      SELECT v.target, COUNT(f.userId) AS followers_count
+      FROM vacations AS v
+      LEFT JOIN followers AS f ON v.vacationId = f.vacationId
+      GROUP BY v.target
+    `;
+  
+    return dal.execute(sql);
+  }
+
 export default{
     getAllVacations,
-    getOneVacation
+    getOneVacation,
+    getVacationsFollowersCount
+    
 }

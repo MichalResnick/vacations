@@ -135,9 +135,10 @@ return (
       <CardContent className="card-actions">
         {!authService.isAdmin() && (
           <>
-            <IconButton size="small" className={`follow-button ${props.vacation.isFollowing ? "unfollow" : "follow"}`} onClick={followAndUnfollow}>
-              {props.vacation.isFollowing ? <Favorite /> : <FavoriteBorder />}
-            </IconButton>
+             <label className="follow">
+                <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} checked={props.vacation.isFollowing} onChange={followAndUnfollow} />
+                <span className={`${props.vacation.isFollowing ? "Unfollow" : "Follow"}`}>{props.vacation.isFollowing? "Unfollow" : "Follow"}</span>
+                </label>
             <Typography variant="body2" className="follow-count">
               {props.vacation.followersCount}
             </Typography>
@@ -146,10 +147,10 @@ return (
 
         {authService.isAdmin() && (
           <div className="admin-icons">
-            <IconButton size="small" component={NavLink} to={"/vacations/edit/" + props.vacation.vacationId}>
+            <IconButton className="icon" size="small" component={NavLink} to={"/vacations/edit/" + props.vacation.vacationId}>
               <Edit />
             </IconButton>
-            <IconButton size="small" onClick={() => deleteVacation(props.vacation.vacationId)}>
+            <IconButton className="icon" size="small" onClick={() => deleteVacation(props.vacation.vacationId)}>
               <Delete />
             </IconButton>
           </div>

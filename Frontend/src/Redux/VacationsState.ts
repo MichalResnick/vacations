@@ -42,11 +42,6 @@ export function vacationReducer(currentState = new VacationsState(), action: Vac
 
         case VacationsActionType.UpdateVacation:            
             const indexToUpdate=newState.vacations.findIndex(v=>v.vacationId===action.payload.vacationId)
-            console.log("--------------------------------------");
-            console.log(indexToUpdate);
-            console.log("--------------------------------------");
-            console.log(action.payload);
-
             if (indexToUpdate >= 0) {
                 newState.vacations[indexToUpdate] = action.payload; 
             }

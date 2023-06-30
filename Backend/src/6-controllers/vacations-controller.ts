@@ -43,4 +43,14 @@ router.get("/vacations/images/:imageName", async (request: Request, response: Re
     }
 });
 
+//get followers by vacation
+router.get("/followersByVacation", async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const data = await vacationsLogic.getVacationsFollowersCount();
+      response.json(data);
+    } catch (err) {
+      next(err);
+    }
+});
+
 export default router;
