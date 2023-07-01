@@ -15,7 +15,7 @@ function Pagination({ totalPosts, postsPerPage, setCurrentPage, currentPage }: P
   }
 
   return (
-    <div className='pagination'>
+    <div className='Pagination'>
       {pages.map((page, index) => (
         <button
           key={index}

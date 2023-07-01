@@ -4643,3 +4643,19 @@ Stack: Error: ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'where clause'
     at new Promise (<anonymous>)
     at __awaiter (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\vacations-logic.ts:4:12)
 ----------------------------------------------------------------------------------------------------
+Sat, 01 Jul 2023 21:31:12 GMT
+cathAll error
+Stack: Error: connect ECONNREFUSED ::1:3306
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1300:16)
+    --------------------
+    at Protocol._enqueue (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\protocol\Protocol.js:144:48)
+    at Protocol.handshake (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\protocol\Protocol.js:51:23)
+    at PoolConnection.connect (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\Connection.js:116:18)
+    at Pool.getConnection (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\Pool.js:48:16)
+    at Pool.query (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\node_modules\mysql\lib\Pool.js:202:8)
+    at C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\2-utils\dal.ts:14:20
+    at new Promise (<anonymous>)
+    at Object.execute (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\2-utils\dal.ts:13:12)
+    at Object.<anonymous> (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\auth-logic.ts:43:29)
+    at step (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\auth-logic.ts:33:23)
+----------------------------------------------------------------------------------------------------

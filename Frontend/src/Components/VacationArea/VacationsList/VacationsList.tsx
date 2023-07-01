@@ -98,8 +98,10 @@ function VacationsList(): JSX.Element {
         postsPerPage={postsPerPage}
         setCurrentPage={handlePaginationChange}
         currentPage={currentPage}
-      />      
+      /> 
+      <br /><br />     
   </div>
+
   );
 }
 

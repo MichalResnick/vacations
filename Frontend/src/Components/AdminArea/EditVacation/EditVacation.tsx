@@ -35,6 +35,23 @@ function EditProduct(): JSX.Element {
     }, []);
 
     async function send(vacation: VacationModel) {
+        const currentDate = new Date();
+        const startDate = new Date(vacation.startDate);
+        const endDate = new Date(vacation.endDate);
+      
+        if (endDate < startDate) {
+          alert("End date cannot be earlier than the start date.");
+          return;
+        }
+      
+        if (currentDate > endDate) {
+          const confirmed = window.confirm(
+            "The selected end date is in the past. Are you sure you want to proceed?"
+          );
+          if (!confirmed) {
+            return;
+          }
+        }
         try {
             await vacationsService.updateVacation(vacation);
             alert("Vacation has been successfully updated");

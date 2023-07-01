@@ -18,22 +18,22 @@ function AddVacation(): JSX.Element {
     const { register, handleSubmit, formState } = useForm<VacationModel>();
     const navigate = useNavigate();
 
-    const [arrivalDateError, setArrivalDateError] = useState<string>("");
-    const [departureDateError, setDepartureDateError] = useState<string>("");
-
     async function send(vacation: VacationModel) {
+        const currentDate = new Date();
+        const startDate = new Date(vacation.startDate);
+        const endDate = new Date(vacation.endDate);
+      
+        if (endDate < startDate) {
+          notifyService.error("End date cannot be earlier than the start date.");
+          return;
+        }
+      
+        if (currentDate > startDate || currentDate > endDate) {
+          notifyService.error("Please select future dates.");
+          return;
+        }
+
         try {
-            const now = new Date().toISOString().slice(0, 10);
-            if (vacation.startDate < now) {
-                setArrivalDateError("The Date passed");
-                return;
-            }
-            setArrivalDateError("");
-            if (vacation.startDate > vacation.endDate) {
-                setDepartureDateError("The Arrival-date must be before Departure-date");
-                return;
-            }
-            setDepartureDateError("");
             await vacationsService.addVacation(vacation);
             notifyService.success("Vacation added successfully!");
             navigate("/vacations");
@@ -62,13 +62,13 @@ function AddVacation(): JSX.Element {
                 <label>Start Date: </label>
                 <input type="date" {...register("startDate", VacationModel.startDateValidation)} />
                 <span className="Error">{formState.errors.startDate?.message}</span>
-                <span className="SpanMessage">{arrivalDateError}</span>
+            
 
                   
                 <label>End Date: </label>
                 <input type="date" {...register("endDate", VacationModel.endDateValidation)} />
                 <span className="Error">{formState.errors.endDate?.message}</span>
-                <span className="SpanMessage">{departureDateError}</span>
+            
     
 
                 <label>Price:</label>
