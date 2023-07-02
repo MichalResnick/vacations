@@ -1,9 +1,21 @@
+.Register {
+    /* background-image: url("../../../Assets/header2.jpg"); */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    z-index: 1000;
+}
+
 .Register>form {
-    width: 250px;
+    width: 500px;
     height: 2000px;
     text-align: center;
     display: inline-block;
     margin: 40px auto;
+
 }
 
 .Register .TextBox,
@@ -18,9 +30,9 @@
     align-items: center;
     padding: 10px;
     margin: 10px;
-    border: solid 1px rebeccapurple;
+    border: solid 1px rgb(58, 11, 178);
     border-radius: 5px;
-    color: rebeccapurple;
+    color: rgb(19, 27, 179);
     font-size: medium;
 
 }
@@ -28,7 +40,7 @@
 .Register h2 {
     text-align: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: rebeccapurple;
+    color: rgb(81, 29, 222);
 }
 
 .Register .SpanMessage {

@@ -9,6 +9,8 @@ import Pagination from "../Pagination/Pagination";
 import authService from "../../../Services/AuthService";
 import notifyService from "../../../Services/NotifyService";
 import { NavLink } from "react-router-dom";
+import { Button, Fab } from "@mui/material";
+
 
 function VacationsList(): JSX.Element {
   const [vacations, setVacations] = useState<VacationModel[]>([]);
@@ -82,41 +84,47 @@ function VacationsList(): JSX.Element {
   return (
     <div className="VacationList">
       {currentVacations.length === 0 && <Spinner />}
+      {!authService.isAdmin() && (
+        <>
+          <Button  className="button" variant="contained" color="primary"  onClick={() => handleFilterButtonClick('all')}>
+            {filterType === 'all' ? 'All Vacations' : 'Show All Vacations'}
+          </Button>
+          <Button  className="button" variant="contained" color="primary" onClick={() => handleFilterButtonClick('following')}>
+            My Vacations
+            </Button>
+            <Button  className="button" variant="contained" color="primary" onClick={() => handleFilterButtonClick('upcoming')}>
+            Upcoming Vacations
+            </Button>
+          <Button  className="button" variant="contained" color="primary" onClick={() => handleFilterButtonClick('current')}>
+            Current Vacations
+          </Button>
+          <br /><br />
+
+        </>
+      )}
+          {authService.isAdmin() && (
+        <>
+          <br />
+          <br />
+          <NavLink to="/vacations/new">
+          <Button  className="button" variant="contained" color="primary">
+           ➕
+            </Button>
+          </NavLink>
+          <NavLink to="/vacations/charts">
+          <Button  className="button" variant="contained" color="primary">
+           Charts
+            </Button>
+          </NavLink>
+      <br />
+        </>
+      )}
+      
 
       {currentVacations.map((v) => (
         <VacationCard key={v.vacationId} vacation={v} />
       ))}
 
-      {!authService.isAdmin() && (
-        <>
-          <button onClick={() => handleFilterButtonClick('all')}>
-            {filterType === 'all' ? 'All Vacations' : 'Show All Vacations'}
-          </button>
-          <button onClick={() => handleFilterButtonClick('following')}>
-            My Vacations
-          </button>
-          <button onClick={() => handleFilterButtonClick('upcoming')}>
-            Upcoming Vacations
-          </button>
-          <button onClick={() => handleFilterButtonClick('current')}>
-            Current Vacations
-          </button>
-        </>
-      )}
-
-      {authService.isAdmin() && (
-        <>
-          <br />
-          <br />
-          <NavLink to="/vacations/new">➕</NavLink>
-          <br />
-          <NavLink to="/vacations/charts">charts</NavLink>
-        </>
-      )}
-
-      <br />
-      <br />
-      <br />
 
       <Pagination
         totalPosts={filteredVacations.length}

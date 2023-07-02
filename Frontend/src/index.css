@@ -6,7 +6,6 @@ html, body, #root {
     background-image:url("./Assets/gifsky.gif");
     background-repeat: no-repeat;
     background-size: cover;
-    /* background-color: rgb(207, 247, 234); */
     font-family: 'Cabin', sans-serif;
     font-family: 'Caveat', cursive;
     font-family: 'Kanit', sans-serif;
