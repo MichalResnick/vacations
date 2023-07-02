@@ -15,14 +15,14 @@ function VacationsList(): JSX.Element {
   const [filterType, setFilterType] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(8);
-
   const [showMyVacation, setShowMyVacation] = useState(false);
 
   useEffect(() => {
-    vacationsService.getAllVacations()
-    .then((fetchedVacations) => {
-      setVacations(fetchedVacations);
-    })
+    vacationsService
+      .getAllVacations()
+      .then((fetchedVacations) => {
+        setVacations(fetchedVacations);
+      })
       .catch((err) => notifyService.error(err));
 
     const unsubscribe = vacationsStore.subscribe(() => {
@@ -33,75 +33,100 @@ function VacationsList(): JSX.Element {
     return () => unsubscribe();
   }, []);
 
-  const filteredVacations  = vacations.filter((vacation) => {
+  const filteredVacations = vacations.filter((vacation) => {
     const currentDate = new Date();
-    const vacationStartDate = new Date(vacation.startDate); // Convert string to Date
-    const vacationEndDate = new Date(vacation.endDate); // Convert string to Date
+    const vacationStartDate = new Date(vacation.startDate);
+    const vacationEndDate = new Date(vacation.endDate);
 
-    if (showMyVacation && authService.isLoggedIn()) {
-      return vacation.isFollowing;
-    } else if (filterType === 'upcoming') {
-      return vacationStartDate > currentDate;
-    } else if (filterType === 'current') {
-      return vacationStartDate <= currentDate && vacationEndDate >= currentDate;
+    if (filterType === 'all') {
+      return true; // Show all vacations
     }
-    return true; // Show all vacations if no filter type is selected
+
+    if (filterType === 'following') {
+      return vacation.isFollowing; // Show vacations user is following
+    }
+
+    if (filterType === 'upcoming') {
+      return vacationStartDate > currentDate 
+    }
+
+    if (filterType === 'current') {
+      return vacationStartDate <= currentDate && vacationEndDate >= currentDate 
+    }
+
+    return false; // Filter type not recognized, return false to hide vacation
   });
 
   const handleFilterButtonClick = (type: string) => {
-    setFilterType(type);
+    if (type === 'all') {
+      setFilterType('all');
+      setShowMyVacation(false);
+    } else {
+      setFilterType(type);
+    }
+    setCurrentPage(1);
   };
 
-  const filterMyVacation = () => {
-    setShowMyVacation((prevState) => !prevState);
-    setCurrentPage(1); // Reset the current page when the filter is changed
-  };
 
   const indexOfLastVacation = currentPage * postsPerPage;
   const indexOfFirstVacation = indexOfLastVacation - postsPerPage;
-  const currentVacations = filteredVacations.slice(indexOfFirstVacation, indexOfLastVacation);
+  const currentVacations = filteredVacations.slice(
+    indexOfFirstVacation,
+    indexOfLastVacation
+  );
+
   const handlePaginationChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
+
   return (
     <div className="VacationList">
       {currentVacations.length === 0 && <Spinner />}
-    
+
       {currentVacations.map((v) => (
         <VacationCard key={v.vacationId} vacation={v} />
       ))}
 
       {!authService.isAdmin() && (
         <>
-          <button onClick={() => handleFilterButtonClick('all')}>All Vacations</button>
-          <button onClick={() => handleFilterButtonClick('upcoming')}>Upcoming Vacations</button>
-          <button onClick={() => handleFilterButtonClick('current')}>Current Vacations</button>
-          <button onClick={filterMyVacation}>My Vacation</button>
+          <button onClick={() => handleFilterButtonClick('all')}>
+            {filterType === 'all' ? 'All Vacations' : 'Show All Vacations'}
+          </button>
+          <button onClick={() => handleFilterButtonClick('following')}>
+            My Vacations
+          </button>
+          <button onClick={() => handleFilterButtonClick('upcoming')}>
+            Upcoming Vacations
+          </button>
+          <button onClick={() => handleFilterButtonClick('current')}>
+            Current Vacations
+          </button>
         </>
       )}
 
-      {authService.isAdmin()&&(
-
+      {authService.isAdmin() && (
         <>
-        <br /><br />
+          <br />
+          <br />
           <NavLink to="/vacations/new">➕</NavLink>
           <br />
           <NavLink to="/vacations/charts">charts</NavLink>
         </>
-
       )}
 
-      <br /><br /><br />
+      <br />
+      <br />
+      <br />
 
       <Pagination
         totalPosts={filteredVacations.length}
         postsPerPage={postsPerPage}
         setCurrentPage={handlePaginationChange}
         currentPage={currentPage}
-      /> 
-      <br /><br />     
-  </div>
-
+      />
+      <br />
+      <br />
+    </div>
   );
 }
 

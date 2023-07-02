@@ -4659,3 +4659,12 @@ Stack: Error: connect ECONNREFUSED ::1:3306
     at Object.<anonymous> (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\auth-logic.ts:43:29)
     at step (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\auth-logic.ts:33:23)
 ----------------------------------------------------------------------------------------------------
+Sun, 02 Jul 2023 00:20:11 GMT
+cathAll error
+Stack: Error: You are already following this vacation.
+    at Object.<anonymous> (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\user-logic.ts:14:15)
+    at step (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\user-logic.ts:33:23)
+    at Object.next (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\user-logic.ts:14:53)
+    at fulfilled (C:\Users\Owner\Desktop\Studies\Vacation Project\Backend\src\5-logic\user-logic.ts:5:58)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+----------------------------------------------------------------------------------------------------

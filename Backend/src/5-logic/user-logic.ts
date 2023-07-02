@@ -8,6 +8,11 @@ import exp from "constants";
 async function addFollow(follow:FollowModel):Promise<FollowModel>{
     const err=follow.validate()
     if(err) throw new ValidationErrorModel(err)
+
+    const existingFollow = await getFollowByUserAndVacation(follow.userId, follow.vacationId);
+    if (existingFollow) {
+        throw new Error("You are already following this vacation.");
+    }
     
     const sql=`INSERT INTO followers VALUES(DEFAULT,?,?) `
     const values=[follow.userId,follow.vacationId]
@@ -31,6 +36,15 @@ async function deleteFollow(follow: FollowModel): Promise<void> {
     if (info.affectedRows === 0) throw new ResourceNotFoundErrorModel(follow.vacationId);
 };
 
+async function getFollowByUserAndVacation(userId: number, vacationId: number): Promise<FollowModel | null> {
+    const sql = "SELECT * FROM followers WHERE userId = ? AND vacationId = ?";
+    const values = [userId, vacationId];
+
+    const result = await dal.execute(sql, values);
+
+    // If a follow relationship exists, return it; otherwise, return null
+    return result.length ? result[0] : null;
+}
 
 export default {
     addFollow,
