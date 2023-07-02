@@ -17,3 +17,9 @@ p,h1,h2,span,textarea input{
     font-family: 'Kanit', sans-serif !important;
 }
 
+.Error {
+    color: red;
+    margin: 0 20px;
+    position: absolute;
+}
+

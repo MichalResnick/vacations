@@ -15,7 +15,7 @@ function AddVacation(): JSX.Element {
 
     useVerifyAdmin();
 
-    const { register, handleSubmit, formState } = useForm<VacationModel>();
+    const { register, handleSubmit, formState,setValue } = useForm<VacationModel>();
     const navigate = useNavigate();
 
     async function send(vacation: VacationModel) {
@@ -25,11 +25,16 @@ function AddVacation(): JSX.Element {
       
         if (endDate < startDate) {
           notifyService.error("End date cannot be earlier than the start date.");
+          setValue("startDate", "");
+          setValue("endDate", "");
           return;
         }
       
         if (currentDate > startDate || currentDate > endDate) {
           notifyService.error("Please select future dates.");
+          setValue("startDate", "");
+          setValue("endDate", "");
+       
           return;
         }
 
@@ -41,6 +46,7 @@ function AddVacation(): JSX.Element {
         catch (err: any) {
             notifyService.error(err);
         }
+
     }
 
     return (

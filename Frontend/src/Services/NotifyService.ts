@@ -2,36 +2,36 @@ import { Notyf } from "notyf"; // npm i notyf
 
 class NotifyService {
 
-    // Private field for displaying cool messages (notifications)
-    private notify = new Notyf({ duration: 4000, position: { x: "center", y: "top"} });
+    private notify = new Notyf({
+        duration: 3000, // display duration
+        position: { x: "center", y: "top" }, // message location
+        dismissible: true // can user click on X
+    });
 
-    // Display success message: 
     public success(message: string): void {
         this.notify.success(message);
     }
 
-    // Display error message: 
     public error(err: any): void {
         const message = this.extractErrorMessage(err);
         this.notify.error(message);
     }
 
-    private extractErrorMessage(err: any): string { 
+    private extractErrorMessage(err: any): string {
 
-        // 1. If the err is the string message: 
-        if(typeof err === "string") return err;
+        // Front: throw "some error...";
+        if (typeof err === "string") return err;
 
-        // 2. If server response with error message to axios: 
-        if(typeof err.response?.data === "string") return err.response.data;
+        // Back: throws string (500 - server crash / 401 - unauthorized / 404...)
+        if (typeof err.response?.data === "string") return err.response.data;
 
-        // 3. If server response with array of error messages to axios: 
-        if(Array.isArray(err.response?.data)) return err.response.data[0];
+        // Back throws string[] (400 - validation)
+        if (Array.isArray(err.response?.data)) return err.response.data[0];
 
-        // 4. If frontend throw new Error("something bad happened...")
-        if(typeof err.message === "string") return err.message;
+        // Front: throw new Error("some error...");
+        if (typeof err.message === "string") return err.message;
 
-        // 5. On any other case: 
-        console.log(err); // Check and update this code...
+        // Other: 
         return "Some error occurred, please try again";
     }
 

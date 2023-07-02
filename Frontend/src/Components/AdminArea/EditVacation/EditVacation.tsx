@@ -6,6 +6,7 @@ import VacationModel from "../../../Models/VacationModel";
 import vacationsService from "../../../Services/VacationsService";
 import useVerifyAdmin from "../../../Utils/UseVerifyAdmin";
 import appConfig from "../../../Utils/Config";
+import notifyService from "../../../Services/NotifyService";
 
 function EditProduct(): JSX.Element {
 
@@ -40,7 +41,7 @@ function EditProduct(): JSX.Element {
         const endDate = new Date(vacation.endDate);
       
         if (endDate < startDate) {
-          alert("End date cannot be earlier than the start date.");
+            notifyService.error("End date cannot be earlier than the start date.");
           return;
         }
       
@@ -54,7 +55,7 @@ function EditProduct(): JSX.Element {
         }
         try {
             await vacationsService.updateVacation(vacation);
-            alert("Vacation has been successfully updated");
+            notifyService.success("Vacation has been successfully updated");
             navigate("/vacations");
         }
         catch (err: any) {
