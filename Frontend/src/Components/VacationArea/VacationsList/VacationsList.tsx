@@ -9,7 +9,7 @@ import Pagination from "../Pagination/Pagination";
 import authService from "../../../Services/AuthService";
 import notifyService from "../../../Services/NotifyService";
 import { NavLink } from "react-router-dom";
-import { Button, Fab } from "@mui/material";
+import { Button } from "@mui/material";
 
 
 function VacationsList(): JSX.Element {

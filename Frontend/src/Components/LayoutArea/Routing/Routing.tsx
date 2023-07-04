@@ -11,6 +11,8 @@ import { authStore } from "../../../Redux/AuthState";
 import Logout from "../../AuthArea/Logout/Logout";
 import AddVacation from "../../AdminArea/AddVacation/AddVacation";
 import VacationsChart from "../../AdminArea/VacationCharts/VacationCharts";
+import OpeningScreen from "../OpeningScreen/OpeningScreen";
+
 
 
 
@@ -29,7 +31,7 @@ function Routing(): JSX.Element {
     return (
         <div className="Routing">
             <Routes>
-    
+                <Route path="/openingScreen" element={<OpeningScreen />} /> 
                 <Route path="/register" element={ user ? <Navigate to="/vacations" /> :<Register />} />
                 <Route path="/login" element={user ? <Navigate to="/vacations" /> :<Login />} />
                 <Route path="/logout" element={<Logout />} />
@@ -38,7 +40,7 @@ function Routing(): JSX.Element {
                 <Route path="/vacations/edit/:vacationId" element={<EditVacation />} />
                 <Route path="/vacations/new" element={<AddVacation />} />
                 <Route path="/vacations/charts" element={<VacationsChart />} />
-                <Route path="/" element={<Navigate to="/register" />} />
+                <Route path="/" element={<Navigate to="/openingScreen" />} />
                 <Route path="*" element={<PageNotFound />} />
 
             </Routes>

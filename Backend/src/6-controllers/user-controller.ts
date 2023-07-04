@@ -3,13 +3,14 @@ import vacationsLogic from "../5-logic/vacations-logic";
 import FollowModel from "../4-models/follow-model";
 import userLogic from "../5-logic/user-logic";
 import cyber from "../2-utils/cyber";
+import verifyLoggedIn from "../3-middleware/verify-logged-in";
 
 
 
 const router = express.Router();
 
 //add follower
-router.post("/followers/:vacationId", async (request: Request, response: Response, next: NextFunction) => {
+router.post("/followers/:vacationId",verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
 
     try {
         const header = request.header("authorization");
@@ -25,7 +26,7 @@ router.post("/followers/:vacationId", async (request: Request, response: Respons
 });
 
 //UnFollowe
-router.delete("/followers/:vacationId", async (request: Request, response: Response, next: NextFunction) => {
+router.delete("/followers/:vacationId",verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const authHeader = request.header("authorization");
         const userId = cyber.getUserIdFromToken(authHeader);

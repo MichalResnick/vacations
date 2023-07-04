@@ -9,6 +9,7 @@ import followersService from "../../../Services/FollowersService";
 import { vacationsStore } from "../../../Redux/VacationsState";
 import { Card, CardContent, CardMedia, Checkbox, IconButton, Tooltip, Typography } from "@mui/material";
 import { Delete, Edit, Favorite, FavoriteBorder } from "@mui/icons-material";
+import notifyService from "../../../Services/NotifyService";
 
 
 interface VacationCardProps {
@@ -59,50 +60,11 @@ function VacationCard(props: VacationCardProps): JSX.Element {
             alert("You deleted vacation") 
             navigate("/vacations")
         } catch (error:any) {
-            alert(error.message)
+         notifyService.error(error.message);
         }
 
     }
 
-//     return (
-//         <div className="VacationCard">
-//             <div className="container">
-//             <NavLink to={"/vacations/"+ props.vacation.vacationId}>
-//             <img src={appConfig.imagesUrl+props.vacation.imageName} />
-//             <p className="target">{props.vacation.target}</p>
-//             <span>Dates: {convertDate(props.vacation.startDate)} - {convertDate(props.vacation.endDate)}</span>
-//             <p>{props.vacation.description}</p>
-//             </NavLink>
-//             </div>	
-
-//             {!authService.isAdmin()&& 
-//             <>
-//                 <label className="follow">
-//                 <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} checked={props.vacation.isFollowing} onChange={followAndUnfollow} />
-//                 <span className={`${props.vacation.isFollowing ? "Unfollow" : "Follow"}`}>{props.vacation.isFollowing? "Unfollow" : "Follow"}</span>
-//                 </label>
-//                 <div className="DivFollowCount">
-//                 <span className="TextCountFollow">{props.vacation.followersCount}</span>
-//                 </div>
-//             </>
-              
-//               }
-
-//             {authService.isAdmin()&&
-//             <>
-//             <NavLink to={"/vacations/edit/" + props.vacation?.vacationId}>Edit Vacation</NavLink>
-//             <span> | </span>
-//             <NavLink to="#" onClick={() => deleteVacation(props.vacation.vacationId)}>Delete</NavLink> 
-//             </>
-            
-            
-//             }
-
-//         </div>
-//     );
-// }
-
-// export default VacationCard;
 return (
     <Card className="VacationCard">
       <NavLink to={"/vacations/" + props.vacation.vacationId} className="card-link">

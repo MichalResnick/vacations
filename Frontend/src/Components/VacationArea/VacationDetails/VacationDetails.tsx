@@ -4,20 +4,20 @@ import VacationModel from "../../../Models/VacationModel";
 import { useEffect, useState } from "react";
 import vacationsService from "../../../Services/VacationsService";
 import appConfig from "../../../Utils/Config";
+import notifyService from "../../../Services/NotifyService";
 
 
 function VacationDetails(): JSX.Element {
 
     const params = useParams();
     const [vacation, setVacation] = useState<VacationModel>();
-    const navigate = useNavigate();
 
     
     useEffect(() => {
         const vacationId = +params.vacationId; 
         vacationsService.getOneVacation(vacationId)
             .then(vacation => setVacation(vacation))
-            .catch(err => alert("Error: " + err.message));
+            .catch((err) => notifyService.error(err));
     }, []);
 
     function convertDate(date: string): string {
@@ -29,8 +29,6 @@ function VacationDetails(): JSX.Element {
 
     return (
         <div className="VacationDetails">
-
-
             {vacation&&
              <>
                     <img src={appConfig.imagesUrl+vacation.imageName} />
@@ -40,11 +38,7 @@ function VacationDetails(): JSX.Element {
                     <h2>Dates: {convertDate(vacation.startDate)} - {convertDate(vacation.endDate)}</h2>
                     <p>{vacation.description}</p>
             </>
-            }
-    
-     
-         
-			
+            }	
         </div>
     );
 }

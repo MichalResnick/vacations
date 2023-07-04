@@ -20,7 +20,7 @@ const router = express.Router(); // Capital R
 // });
 
 //add vacation
-router.post("/vacations", async (request: Request, response: Response, next: NextFunction) => {
+router.post("/vacations",verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
     try {
     request.body.image=request.files?.image
     const vacation=new VacationModel(request.body)
@@ -33,7 +33,7 @@ router.post("/vacations", async (request: Request, response: Response, next: Nex
 });
 
 //update vacation
-router.put("/vacations/:vacationId([0-9]+)", async (request: Request, response: Response, next: NextFunction) => {
+router.put("/vacations/:vacationId([0-9]+)",verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
     try {
     request.body.vacationId=+request.params.vacationId
     request.body.image=request.files?.image

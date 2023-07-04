@@ -17,13 +17,14 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import UserModel from '../../../Models/UserModel';
 import authService from '../../../Services/AuthService';
+import notifyService from '../../../Services/NotifyService';
 
 function Copyright(props: any): JSX.Element {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Vacations-Michal Resnick
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -43,21 +44,13 @@ const defaultTheme = createTheme();
     async function send(credential: CredentialsModel) {
         try { 
             await authService.login(credential);
-            alert("Welcome!");
+            notifyService.success("Welcome!");
             navigate("/vacations");
         }
         catch (err: any) {
-            alert(err.message);
+            notifyService.error(err);
         }
     }
-//   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-//     event.preventDefault();
-//     const data = new FormData(event.currentTarget);
-//     console.log({
-//       email: data.get('email'),
-//       password: data.get('password'),
-//     });
-//   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -80,11 +73,13 @@ const defaultTheme = createTheme();
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{
+             
               my: 8,
               mx: 4,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
+              backgroundColor: '#e1f5fe',
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -127,9 +122,6 @@ const defaultTheme = createTheme();
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
                 </Grid>
                 <Grid item>
                   <Link href="/register" variant="body2">
