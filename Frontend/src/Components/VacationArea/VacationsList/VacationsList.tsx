@@ -108,7 +108,7 @@ function VacationsList(): JSX.Element {
           <br />
           <NavLink to="/vacations/new">
           <Button  className="button" variant="contained" color="primary">
-           ➕
+          Add Vacation
             </Button>
           </NavLink>
           <NavLink to="/vacations/charts">

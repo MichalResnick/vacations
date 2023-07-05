@@ -1,3 +1,30 @@
 .Footer {
-	
-}
+    background-color: #f2f2f2;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .Footer p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .Footer a {
+    color: #666;
+    text-decoration: none;
+  }
+  
+  .Footer a:hover {
+    color: #333;
+  }
+  
+  .Footer .copyright {
+    margin-top: 8px;
+    font-size: 10px;
+    color: #999;
+  }
+  
