@@ -1,5 +1,42 @@
+
 .VacationDetails {
 	font-family: 'Cabin', sans-serif;
-font-family: 'Caveat', cursive;
-font-family: 'Kanit', sans-serif;
-}
+	font-family: 'Caveat', cursive;
+	font-family: 'Kanit', sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+  }
+  
+  .image-container {
+	margin-bottom: 20px;
+  }
+  
+  img {
+	max-width: 100%;
+	height: auto;
+  }
+  
+  .back-link {
+	
+	color: #333;
+	font-size: 16px;
+	margin-bottom: 10px;
+  }
+  
+  .target {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 10px;
+  }
+  
+  .dates {
+	font-size: 18px;
+	margin-bottom: 10px;
+  }
+  
+  .description {
+	font-size: 16px;
+  }
+  

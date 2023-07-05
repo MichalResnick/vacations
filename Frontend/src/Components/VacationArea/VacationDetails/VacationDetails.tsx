@@ -26,21 +26,27 @@ function VacationDetails(): JSX.Element {
     }
 
     
-
     return (
-        <div className="VacationDetails">
-            {vacation&&
-             <>
-                    <img src={appConfig.imagesUrl+vacation.imageName} />
-                    <br />
-                    <NavLink to="/vacations">Back</NavLink>
-                    <h2>{vacation.target}</h2>
-                    <h2>Dates: {convertDate(vacation.startDate)} - {convertDate(vacation.endDate)}</h2>
-                    <p>{vacation.description}</p>
-            </>
-            }	
+    <div className="VacationDetails">
+    {vacation && (
+      <>
+        <div className="image-container">
+          <img src={appConfig.imagesUrl + vacation.imageName} alt="Vacation" />
         </div>
-    );
+        <div className="content-container">
+          <NavLink to="/vacations" className="back-link">
+            Back
+          </NavLink>
+          <h2 className="target">{vacation.target}</h2>
+          <h2 className="dates">
+            Dates: {convertDate(vacation.startDate)} - {convertDate(vacation.endDate)}
+          </h2>
+          <p className="description">{vacation.description}</p>
+        </div>
+      </>
+    )}
+  </div>
+);
 }
 
 export default VacationDetails;
